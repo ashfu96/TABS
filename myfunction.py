@@ -13,8 +13,8 @@ def load_data(data):
     df_test = pd.read_csv(data, delimiter=" ", header=None)
     df_test.dropna(axis=1, inplace=True)
     return df_test
-    
 
+    
 # FILTRO DEL DATASET PER UNIT_ID SELEZIONATA
 def filter_by_unit(df , selected_unit_id):
     """
