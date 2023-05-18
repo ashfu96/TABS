@@ -24,7 +24,10 @@ st.set_page_config(
 st.title("Predictive maintainace using LSTM (Long-short term memory")
 st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
 
-# CARICAMENTO DATASET
+#################################################################################    
+#           CARICAMENTO DATASET
+#################################################################################
+
 # crea il pulsante di caricamento file
 test_data_file = st.file_uploader("Carica qui il dataset di test (txt)", type="txt")
 
@@ -39,25 +42,31 @@ if test_data_file is not None:
     df_test.columns = columns
     st.dataframe(df_test)
    
-################################################################################
-
-    st.divider()
-    st.title("Visualizzazione dati sensori per unit_ID")
-    st.write("Analisi sensori critici")
+#################################################################################    
+#           SIDEBAR E INFO DOPO LA SELEZIONE UNITà
+#################################################################################
     test=df_test
-    #st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
-        
-# SIDEBAR PER SELEZIONE UNITà   
+    
+    # SIDEBAR PER SELEZIONE UNITà   
     unit_ids = test['unit_ID'].unique()
     # Selezione unit_ID su sidebar
     selected_unit_id = st.sidebar.selectbox('Seleziona unit_ID', unit_ids)
     # Filtra il DataFrame in base all'unità selezionata
     filtered_data = myfunction.filter_by_unit(test,selected_unit_id)
 
-# CONTEGGIO CICLI EFFETTUATI PER UNITà SELEZIONATA
+    # CONTEGGIO CICLI EFFETTUATI PER UNITà SELEZIONATA
     results = myfunction.count_cycles_by_unit(filtered_data)
     for result in results:
             st.header(result)
+            
+#################################################################################    
+#           PLOT SENSORI CHIAVE
+#################################################################################
+
+    st.divider()
+    st.title("Visualizzazione dati sensori per unit_ID")
+    st.write("Analisi sensori critici")
+    #st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
 
     # Drop the specified columns
     df_dropped = test.drop(['time_in_cycles', 'unit_ID'], axis=1)
