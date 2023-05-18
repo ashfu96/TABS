@@ -108,8 +108,18 @@ def plot_selected_columns(df_train, selected_unit_id, selected_columns):
     
     # Use Streamlit's matplotlib support to display the plot
     st.pyplot(fig)
-    
-    
+
+#  SLIDER PER IMPOSTAZIONI AVANZATE
+def show_sliders():
+    st.write("Enter the weights:")
+    weight1 = st.slider('T30 (w)', min_value=0.0, max_value=1.0, value=0.1, step=0.1)
+    weight2 = st.slider('T50 (w) ', min_value=0.0, max_value=1.0, value=0.5, step=0.1)
+    weight3 = st.slider('Nc (w)', min_value=0.0, max_value=1.0, value=0.2, step=0.1)
+    weight4 = st.slider('NRc (w)', min_value=0.0, max_value=1.0, value=0.8, step=0.1)
+    st.write(f"Weight 1: {weight1}")
+    st.write(f"Weight 2: {weight2}")
+    st.write(f"Weight 3: {weight3}")
+    st.write(f"Weight 4: {weight4}")    
     
 def plot_hotelling_tsquare(df, selected_unit_id, sensors):
 
