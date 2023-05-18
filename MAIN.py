@@ -71,15 +71,11 @@ if test_data_file is not None:
     st.divider()
     myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
 
-    st.write('Health analysis of the engine') 
+    st.header('Health-index dell unità') 
 
 # BOTTONE AVANZATE PESI SENSORI
 if st.button('Impostazioni avanzate'):
     weight1, weight2, weight3, weight4 = myfunction.show_sliders()
-    st.write(f"Weight 1: {weight1}")
-    st.write(f"Weight 2: {weight2}")
-    st.write(f"Weight 3: {weight3}")
-    st.write(f"Weight 4: {weight4}")
 
     weights = [weight1, weight2, weight3, weight4]
     test2=test.copy()
