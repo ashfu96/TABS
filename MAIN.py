@@ -82,7 +82,7 @@ if test_data_file is not None:
 if st.button('Impostazioni avanzate'):
     weight1, weight2, weight3, weight4 = myfunction.show_sliders()
 
-weights = [weight1, weight2, weight3, weight4]
+    weights = [weight1, weight2, weight3, weight4]
 
     
     
