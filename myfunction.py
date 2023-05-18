@@ -8,29 +8,13 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 
-
-
-# FUNZIONE PER LETTURA FILE DATASET DA GITHUB
-
-def read_data_from_github(train_url, test_url, rul_url):
-    """
-    Legge i dati dai file presenti su GitHub e restituisce i relativi dataframes.
-    """
-    # legge i dati di training dal file su GitHub
-    df_train = pd.read_csv(train_url, sep=" ", header=None)
-
-    # legge i dati di test dal file su GitHub
-    df_test = pd.read_csv(test_url, sep=" ", header=None)
-
-    # legge i valori RUL dal file su GitHub
-    df_rul = pd.read_csv(rul_url, sep=" ", header=None)
-
-    # restituisce i dataframes
-    return df_train, df_test, df_rul
-
+# FUNZIONE LETTURA DATASET
 def load_data(data):
-    return pd.read_csv(data, delimiter=" ", header=None)
-
+    df_test = pd.read_csv(data, delimiter=" ", header=None)
+    df_test.dropna(axis=1, inplace=True)
+    return df_test
+    
+#############################################################
 # RIMOZIONE COLONNE NaN
 def remove_nan_columns(df_train, df_test, df_rul):
     """
