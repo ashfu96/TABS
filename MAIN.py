@@ -75,7 +75,7 @@ if test_data_file is not None:
 
 # BOTTONE AVANZATE
 if st.button('Impostazioni avanzate'):
-    show_sliders()
+    my_function.show_sliders()
 
     weights = [weight1, weight2, weight3, weight4]
     test2=test.copy()
