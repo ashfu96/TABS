@@ -74,16 +74,15 @@ if test_data_file is not None:
 #################################################################################    
 #           HEALT-INDEX
 #################################################################################
-    st.header('Health-index dell unità') 
-    test2=test.copy()
-    myfunction.calculate_and_plot_health_index(test2, selected_unit_id, weights)
+    st.header('Health-index dell unità')
 
     # BOTTONE AVANZATE PESI SENSORI
 if st.button('Impostazioni avanzate'):
     weight1, weight2, weight3, weight4 = myfunction.show_sliders()
 
     weights = [weight1, weight2, weight3, weight4]
-
+    test2=test.copy()
+    myfunction.calculate_and_plot_health_index(test2, selected_unit_id, weights)
     
     
     
