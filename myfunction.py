@@ -111,7 +111,7 @@ def plot_selected_columns(df_train, selected_unit_id, selected_columns):
 
 #  SLIDER PER IMPOSTAZIONI AVANZATE
 def show_sliders():
-    st.write("Enter the weights:")
+    st.write("Modifica i pesi dei sensori:")
     weight1 = st.slider('T30 (w)', min_value=0.0, max_value=1.0, value=0.1, step=0.1)
     weight2 = st.slider('T50 (w) ', min_value=0.0, max_value=1.0, value=0.5, step=0.1)
     weight3 = st.slider('Nc (w)', min_value=0.0, max_value=1.0, value=0.2, step=0.1)
