@@ -14,76 +14,18 @@ def load_data(data):
     df_test.dropna(axis=1, inplace=True)
     return df_test
     
-#############################################################
-# RIMOZIONE COLONNE NaN
-def remove_nan_columns(df_train, df_test, df_rul):
-    """
-    Rimuove le colonne con valori NaN dai dataframes di training e di test e una colonna specifica dal dataframe RUL.
-    """
-    # rimuove le colonne con valori NaN dal dataframe di training
-    df_train.dropna(axis=1, inplace=True)
 
-    # rimuove le colonne con valori NaN dal dataframe di test
-    df_test.dropna(axis=1, inplace=True)
-
-    # rimuove la colonna specifica dal dataframe RUL
-    df_rul.drop(columns=[1], axis=1, inplace=True)
-
-    # restituisce i dataframes modificati
-    return df_train, df_test, df_rul
-  
-# RINOMINO COLONNE CON LABELS
-def rename_columns(df_train, df_test, new_column_names):
-    """
-    Rinomina le colonne di due dataframe utilizzando una lista di nuove etichette.
-    """
-    # rinomina le colonne del dataframe di training
-    df_train.columns = new_column_names
-
-    # rinomina le colonne del dataframe di test
-    df_test.columns = new_column_names
-
-    # restituisce i dataframe con le colonne rinominate
-    return df_train, df_test
-  
-# RIMOZIONE SENSORI CON DEVIAZIONE STANDARD = 0
-def remove_zero_std_columns(df):
-    """
-    Rimuove dal dataframe tutte le colonne che hanno deviazione standard pari a zero.
-    """
-    std = df.std()
-    zero_std_cols = std[std == 0].index.tolist()
-    df = df.drop(zero_std_cols, axis=1)
-    return df
-
-# RIMOZIONE COLONNE (QUALI COLONNE LO DECIDO DAL MAIN)
-def remove_columns(df_train, df_test, columns_to_remove):
-    """
-    Rimuove le colonne specifiche da due dataframe.
-    """
-    # rimuove le colonne specifiche dal dataframe di training
-    df_train = df_train.drop(columns_to_remove, axis=1)
-
-    # rimuove le colonne specifiche dal dataframe di test
-    df_test = df_test.drop(columns_to_remove, axis=1)
-
-    # restituisce i dataframe modificati
-    return df_train, df_test
-  
-############## STREAMLIT ##############
-
-#FILTRO DEL DATASET PER UNIT_ID SELEZIONATA
+# FILTRO DEL DATASET PER UNIT_ID SELEZIONATA
 def filter_by_unit(df , selected_unit_id):
     """
     # Creazione del menu sidebar per la selezione dell'unit_id
-    """
-    
-
+    """    
     # Filtro del dataframe per la unit_ID selezionata
     filtered_data = df[df['unit_ID'] == selected_unit_id]
 
     # Restituisce il DataFrame filtrato
     return filtered_data
+
 
 # CONTEGGIO VOLI EFFETTUATI PER UNIT_ID
 def count_cycles_by_unit(df):
@@ -98,49 +40,6 @@ def count_cycles_by_unit(df):
     # Restituisce la lista di stringhe di testo
     return results
 
-
-# PLOT PER UNIT_ID L'ANDAMENTO DEI SENSORI NEL TEMPO
-def plot_sensor_data(df, filtered_data):
-
-    # creazione del grafico
-    fig, ax = plt.subplots(figsize=(20,15))
-    for sensor in df.columns[2:]:
-        ax.plot(filtered_data['time_in_cycles'], filtered_data[sensor], label=sensor)
-    ax.set_xlabel('Time (cycles)')
-    ax.set_ylabel('Sensor values')
-    ax.set_title(f'Sensor data for unit')
-    ax.legend()
-
-    # visualizzazione del grafico
-    st.pyplot(fig)
-
-"""
-# GRAFICO SENSORI MA UTILIZZANDO FUNZIONE DI STREAMLIT ST.LINECHART
-def plot_sensor_data(df, filtered_data):
-    # creazione del grafico
-    sensor_cols = df.columns[2:]
-    chart_data = filtered_data.set_index('time_in_cycles')[sensor_cols]
-    chart_data.columns = chart_data.columns.str.replace('sensor', 'Sensor ')
-    chart_data.columns = chart_data.columns.str.replace('_', ' ')
-    chart = st.line_chart(chart_data)
-    
-    # Imposta manualmente il range sull'asse y
-    y_min = filtered_data.iloc[:, 2:].values.min()
-    y_max = filtered_data.iloc[:, 2:].values.max()
-    y_range = y_max - y_min
-    chart.y_axis.set_range(y_min - 0.1*y_range, y_max + 0.1*y_range)
-    
-    # Aggiungi titoli al grafico
-    chart.title('Sensor data for unit')
-    chart.xlabel('Time (cycles)')
-    chart.ylabel('Sensor values')
-    chart.legend(sensor_cols)
-    
-    # visualizzazione del grafico
-    st.write(chart)
-"""
-
-############################# PROVA SEQ #######################################
 
 # NORMALIZZAZIONE COLONNE TEST
 def normalize_test_columns(df, cols_to_exclude):
@@ -177,9 +76,7 @@ def normalize_test_columns(df, cols_to_exclude):
     return df_test
 
 
-
 ###############  SENSOR PLOT  ###################
-
 
 def plot_selected_columns(df_train, selected_unit_id, selected_columns):
     # Filter the DataFrame for the selected unit ID
@@ -187,9 +84,7 @@ def plot_selected_columns(df_train, selected_unit_id, selected_columns):
     
     # Define a list of colors
     colors = ['b', 'g', 'r', 'c']
-    
-
-    
+       
     # Create a figure and a grid of subplots
     fig, axs = plt.subplots(2, 2, figsize=(15, 15))
     
@@ -218,17 +113,12 @@ def plot_selected_columns(df_train, selected_unit_id, selected_columns):
     
 def plot_hotelling_tsquare(df, selected_unit_id, sensors):
 
-
-
-
     # Filter data for the specified unit_id
     unit_data = df[df['unit_ID'] == selected_unit_id]
 
     # Select the variables of interest for the specified unit_id
     unit_data_selected = unit_data[sensors]
     unit_data_selected.reset_index(drop=True, inplace=True)
-    
-
     
     # Calculate the mean vector for the selected variables
     mean_vector = np.mean(unit_data_selected, axis=0)
@@ -240,6 +130,7 @@ def plot_hotelling_tsquare(df, selected_unit_id, sensors):
     unit_T_square = np.dot(np.dot((unit_data_selected - mean_vector), np.linalg.inv(covariance_matrix)), (unit_data_selected - mean_vector).T).diagonal()
 
     return  unit_T_square
+
 
 def plot_hotelling_tsquare_comparison(df_train, df_test, selected_unit_id, sensors):
     # Create a figure and axes
