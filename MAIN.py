@@ -75,7 +75,7 @@ if test_data_file is not None:
 
 # BOTTONE AVANZATE PESI SENSORI
 if st.button('Impostazioni avanzate'):
-    weight1, weight2, weight3, weight4 = show_sliders()
+    weight1, weight2, weight3, weight4 = myfunction.show_sliders()
     st.write(f"Weight 1: {weight1}")
     st.write(f"Weight 2: {weight2}")
     st.write(f"Weight 3: {weight3}")
