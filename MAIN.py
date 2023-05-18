@@ -38,23 +38,17 @@ if test_data_file is not None:
     # rinomino colonne
     df_test.columns = columns
     st.dataframe(df_test)
+   
 
-    
-    columns = ['unit_ID','time_in_cycles','setting_1', 'setting_2','setting_3','T2','T24','T30','T50','P2','P15','P30','Nf','Nc','epr','Ps30','phi','NRf','NRc','BPR','farB','htBleed','Nf_dmd','PCNfR_dmd','W31','W32' ]
-    sensors = ['T2', 'T24', 'T30', 'T50', 'P2', 'P15', 'P30', 'Nf', 'Nc', 'epr','Ps30', 'phi', 'NRf', 'NRc', 'BPR', 'farB', 'htBleed', 'Nf_dmd','PCNfR_dmd', 'W31', 'W32']
-    settings = ['setting_1', 'setting_2','setting_3']
-    sequence_length = 50 
-    sequence_cols=sensors + settings
-    
-    
     st.title("Visualizzazione dati sensori per unit_ID")
     st.write("Analisi sensori critici")
     test=df_test
-    st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
+    #st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
     
     # PLOT DEI SENSORI CON STANDARD DEVIATION PIU' ELEVATA
     unit_ids = test['unit_ID'].unique()
-    # Ask the user for the unit_id
+    
+    # Selezione unit_ID su sidebar
     selected_unit_id = st.sidebar.selectbox('Seleziona unit_ID', unit_ids)
     # Filtra il DataFrame in base all'unità selezionata
     filtered_data = myfunction.filter_by_unit(test,selected_unit_id)
