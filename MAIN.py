@@ -46,6 +46,7 @@ if test_data_file is not None:
 #           SIDEBAR E INFO DOPO LA SELEZIONE UNITà
 #################################################################################
     test=df_test
+    st.divider()
     
     # SIDEBAR PER SELEZIONE UNITà   
     unit_ids = test['unit_ID'].unique()
@@ -62,12 +63,11 @@ if test_data_file is not None:
 #################################################################################    
 #           PLOT SENSORI CHIAVE
 #################################################################################
-
-    st.divider()
-    st.title("Visualizzazione dati sensori per unit_ID")
-    st.write("Analisi sensori critici")
+    
+    st.title("Visualizzazione informazioni per l'unità selezionata")
     #st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
-
+    st.write("Analisi sensori critici")
+    
     # Drop the specified columns
     df_dropped = test.drop(['time_in_cycles', 'unit_ID'], axis=1)
     # Calculate the standard deviation of each column
