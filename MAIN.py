@@ -1,12 +1,9 @@
 import myfunction
 import streamlit as st
 from tensorflow.keras.models import load_model
-#streamlit run ALB/MAIN.py
-# RINOMINO COLONNE CON LABELS
 
+#CONFIGURAZIONE PAGINA
 st.set_option('deprecation.showPyplotGlobalUse', False)
-
-
 
 # Set page configuration
 st.set_page_config(
@@ -16,19 +13,21 @@ st.set_page_config(
     initial_sidebar_state="expanded"  # Optional: Expand the sidebar by default
 )
 
-
-
 st.title("Predictive maintainace using LSTM (Long-short term memory")
 st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
 
+# CARICAMENTO DATASET
+# crea il pulsante di caricamento file
+test_data_file = st.file_uploader("Carica qui il dataset di test (txt)", type="txt")
 
-
-test_data_file = st.file_uploader("Upload Test Data (txt)", type="txt")
+# se l'utente ha caricato un file di testo valido
 if test_data_file is not None:
     df_test = myfunction.load_data(test_data_file)
-    df_test.dropna(axis=1, inplace=True)
-    st.write("Test Data:")
+
+    # visualizza la forma del DataFrame su schermo
+    st.write("Dataset caricato:")
     st.write(df_test.shape)
+
     
     columns = ['unit_ID','time_in_cycles','setting_1', 'setting_2','setting_3','T2','T24','T30','T50','P2','P15','P30','Nf','Nc','epr','Ps30','phi','NRf','NRc','BPR','farB','htBleed','Nf_dmd','PCNfR_dmd','W31','W32' ]
 
@@ -39,24 +38,6 @@ if test_data_file is not None:
     sequence_length = 50 
     
     sequence_cols=sensors + settings
-    
-    # IMPORTO DATASET
-    url_TRAIN = "https://raw.githubusercontent.com/ashfu96/ALB/main/train_FD001.txt"
-    url_TEST = "https://raw.githubusercontent.com/ashfu96/ALB/main/test_FD001.txt"
-    url_RUL = "https://raw.githubusercontent.com/ashfu96/ALB/main/RUL_FD001.txt"
-    
-    df_train, comparison_test, df_rul = myfunction.read_data_from_github(url_TRAIN, url_TEST, url_RUL)
-    df_train.dropna(axis=1, inplace=True)
-    df_train, df_test = myfunction.rename_columns(df_train, df_test, columns)
-    st.write(df_test.describe())
-
-    # RIMOZIONE SENSORI CON DEVIAZIONE STANDARD = 0
-    #train = myfunction.remove_zero_std_columns(df_train)
-    #test = myfunction.remove_zero_std_columns(df_test)
-
-
-    
-    
     
     
     st.title("Visualizzazione dati sensori per unit_ID")
