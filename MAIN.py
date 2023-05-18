@@ -39,17 +39,19 @@ if test_data_file is not None:
     df_test.columns = columns
     st.dataframe(df_test)
    
-
+    st.divider()
     st.title("Visualizzazione dati sensori per unit_ID")
     st.write("Analisi sensori critici")
     test=df_test
     #st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
+    
     
     # PLOT DEI SENSORI CON STANDARD DEVIATION PIU' ELEVATA
     unit_ids = test['unit_ID'].unique()
     
     # Selezione unit_ID su sidebar
     selected_unit_id = st.sidebar.selectbox('Seleziona unit_ID', unit_ids)
+    
     # Filtra il DataFrame in base all'unità selezionata
     filtered_data = myfunction.filter_by_unit(test,selected_unit_id)
 
@@ -72,7 +74,7 @@ if test_data_file is not None:
     # Get the names of the first four columns
     selected_columns = sorted_columns.index[:4]
     
-    
+    st.divider()
     myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
 
     st.write('Health analysis of the engine') 
