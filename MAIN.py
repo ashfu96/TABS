@@ -2,6 +2,14 @@ import myfunction
 import streamlit as st
 from tensorflow.keras.models import load_model
 
+################
+columns = ['unit_ID','time_in_cycles','setting_1', 'setting_2','setting_3','T2','T24','T30','T50','P2','P15','P30','Nf','Nc','epr','Ps30','phi','NRf','NRc','BPR','farB','htBleed','Nf_dmd','PCNfR_dmd','W31','W32' ]
+sensors = ['T2', 'T24', 'T30', 'T50', 'P2', 'P15', 'P30', 'Nf', 'Nc', 'epr','Ps30', 'phi', 'NRf', 'NRc', 'BPR', 'farB', 'htBleed', 'Nf_dmd','PCNfR_dmd', 'W31', 'W32']
+settings = ['setting_1', 'setting_2','setting_3']
+sequence_length = 50 
+sequence_cols=sensors + settings
+################
+
 #CONFIGURAZIONE PAGINA
 st.set_option('deprecation.showPyplotGlobalUse', False)
 
@@ -26,17 +34,16 @@ if test_data_file is not None:
 
     # visualizza la forma del DataFrame su schermo
     st.write("Dataset caricato:")
-    st.write(df_test.shape)
+    
+    # rinomino colonne
+    df_test.columns = columns
+    st.table(df_test)
 
     
     columns = ['unit_ID','time_in_cycles','setting_1', 'setting_2','setting_3','T2','T24','T30','T50','P2','P15','P30','Nf','Nc','epr','Ps30','phi','NRf','NRc','BPR','farB','htBleed','Nf_dmd','PCNfR_dmd','W31','W32' ]
-
     sensors = ['T2', 'T24', 'T30', 'T50', 'P2', 'P15', 'P30', 'Nf', 'Nc', 'epr','Ps30', 'phi', 'NRf', 'NRc', 'BPR', 'farB', 'htBleed', 'Nf_dmd','PCNfR_dmd', 'W31', 'W32']
-
     settings = ['setting_1', 'setting_2','setting_3']
-    
     sequence_length = 50 
-    
     sequence_cols=sensors + settings
     
     
