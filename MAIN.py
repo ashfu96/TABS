@@ -15,7 +15,7 @@ st.set_option('deprecation.showPyplotGlobalUse', False)
 
 # Set page configuration
 st.set_page_config(
-    page_title="Enlarged Window",
+    page_title="Dashboard page",
     page_icon=":computer:",
     layout="wide",  # Optional: Set the layout to wide
     initial_sidebar_state="expanded"  # Optional: Expand the sidebar by default
@@ -37,7 +37,7 @@ if test_data_file is not None:
     
     # rinomino colonne
     df_test.columns = columns
-    st.table(df_test)
+    st.dataframe(df_test)
 
     
     columns = ['unit_ID','time_in_cycles','setting_1', 'setting_2','setting_3','T2','T24','T30','T50','P2','P15','P30','Nf','Nc','epr','Ps30','phi','NRf','NRc','BPR','farB','htBleed','Nf_dmd','PCNfR_dmd','W31','W32' ]
