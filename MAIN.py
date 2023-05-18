@@ -54,22 +54,17 @@ if test_data_file is not None:
     # Filtra il DataFrame in base all'unità selezionata
     filtered_data = myfunction.filter_by_unit(test,selected_unit_id)
 
-    # Mostra il conteggio dei cicli per l'unità selezionata
+# CONTEGGIO CICLI EFFETTUATI PER UNITà SELEZIONATA
     results = myfunction.count_cycles_by_unit(filtered_data)
     for result in results:
-            st.write(result)
-
-
+            st.header(result)
 
     # Drop the specified columns
     df_dropped = test.drop(['time_in_cycles', 'unit_ID'], axis=1)
-
     # Calculate the standard deviation of each column
     std_dev = df_dropped.std()
-
     # Sort the columns by their standard deviation, in descending order
     sorted_columns = std_dev.sort_values(ascending=False)
-
     # Get the names of the first four columns
     selected_columns = sorted_columns.index[:4]
     
@@ -77,12 +72,10 @@ if test_data_file is not None:
     myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
 
     st.write('Health analysis of the engine') 
-             
-    # Ask the user to input the weights
-    weight1 = st.slider('T30 (w)', min_value=0.0, max_value=1.0, value=0.1, step=0.1)
-    weight2 = st.slider('T50 (w) ', min_value=0.0, max_value=1.0, value=0.5, step=0.1)
-    weight3 = st.slider('Nc (w)', min_value=0.0, max_value=1.0, value=0.2, step=0.1)
-    weight4 = st.slider('NRc (w)', min_value=0.0, max_value=1.0, value=0.8, step=0.1)
+
+# BOTTONE AVANZATE
+if st.button('Impostazioni avanzate'):
+    show_sliders()
 
     weights = [weight1, weight2, weight3, weight4]
     test2=test.copy()
