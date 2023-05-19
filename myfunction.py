@@ -10,9 +10,7 @@ from tensorflow.keras.models import load_model
 
 # FUNZIONE LETTURA DATASET
 def load_data(data):
-    df_test = pd.read_csv(data, delimiter=" ", header=None)
-    df_test.dropna(axis=1, inplace=True)
-    return df_test
+    return pd.read_csv(data, delimiter=" ", header=None)
 
     
 # FILTRO DEL DATASET PER UNIT_ID SELEZIONATA
