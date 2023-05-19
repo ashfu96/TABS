@@ -31,9 +31,12 @@ st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jp
 #TRAIN E RUL CARICATI IN BACKEND
 url_TRAIN = "https://raw.githubusercontent.com/ashfu96/ALB/main/train_FD001.txt"
 url_RUL = "https://raw.githubusercontent.com/ashfu96/ALB/main/RUL_FD001.txt"
+
 df_rul = pd.read_csv(rul_url, sep=" ", header=None)
 df_train = pd.read_csv(train_url, sep=" ", header=None)
 
+df_train.dropna(axis=1, inplace=True)
+df_rul.dropna(axis=1, inplace=True)
 
 # TEST CARICATO DALL'UTENTE
 # crea il pulsante di caricamento file
