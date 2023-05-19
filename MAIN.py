@@ -1,6 +1,5 @@
 import myfunction
 import streamlit as st
-import pandas as pd
 from tensorflow.keras.models import load_model
 
 ################
@@ -33,8 +32,8 @@ st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jp
 url_TRAIN = "https://raw.githubusercontent.com/ashfu96/ALB/main/train_FD001.txt"
 url_RUL = "https://raw.githubusercontent.com/ashfu96/ALB/main/RUL_FD001.txt"
 
-df_train = pd.read_csv(url_TRAIN, sep=" ", header=None)
-df_rul = pd.read_csv(url_RUL, sep=" ", header=None)
+df_train = myfunction.load_data(url_TRAIN)
+df_rul = myfunction.load_data(url_RUL)
 
 df_train.dropna(axis=1, inplace=True)
 df_rul.dropna(axis=1, inplace=True)
