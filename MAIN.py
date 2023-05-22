@@ -110,28 +110,28 @@ if test_data_file is not None:
     #st.divider()
     #myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
 
-# Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
-selected_column =st.sidebar.selectbox('Seleziona la colonna da visualizzare', selected_columns)
+    # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
+    selected_column =st.sidebar.selectbox('Seleziona la colonna da visualizzare', selected_columns)
 
-# Genera il grafico in base alle selezioni dell'utente
-fig = myfunction.plot_data(test, selected_unit_id, selected_column)
+    # Genera il grafico in base alle selezioni dell'utente
+    fig = myfunction.plot_data(test, selected_unit_id, selected_column)
 
-# Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
-st.pyplot(fig)
+    # Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
+    st.pyplot(fig)
     
 #################################################################################    
 #           HEALT-INDEX
 #################################################################################
     st.header('Health-index dell unità')
 
-    # BOTTONE AVANZATE PESI SENSORI
-if st.button('Impostazioni avanzate'):
-    weight1, weight2, weight3, weight4 = myfunction.show_sliders()
+        # BOTTONE AVANZATE PESI SENSORI
+    if st.button('Impostazioni avanzate'):
+        weight1, weight2, weight3, weight4 = myfunction.show_sliders()
 
-    weights = [weight1, weight2, weight3, weight4]
-    test2=test.copy()
-    myfunction.calculate_and_plot_health_index(test2, selected_unit_id, weights)
-    
+        weights = [weight1, weight2, weight3, weight4]
+        test2=test.copy()
+        myfunction.calculate_and_plot_health_index(test2, selected_unit_id, weights)
+
     
     
     
