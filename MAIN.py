@@ -76,7 +76,6 @@ if test_data_file is not None:
 #           SIDEBAR E INFO DOPO LA SELEZIONE UNITà
 #################################################################################
     test=df_test
-    st.divider()
     
     # SIDEBAR PER SELEZIONE UNITà   
     unit_ids = test['unit_ID'].unique()
