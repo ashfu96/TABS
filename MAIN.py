@@ -37,6 +37,7 @@ df_train = myfunction.load_data(url_TRAIN)
 df_rul = myfunction.load_data(url_RUL)
 comparison_test = myfunction.load_data(url_TEST)
 
+#Rimozione colonne nulle
 df_train.dropna(axis=1, inplace=True)
 df_rul.dropna(axis=1, inplace=True)
 comparison_test.dropna(axis=1, inplace=True)
@@ -49,15 +50,22 @@ test_data_file = st.file_uploader("Carica qui il dataset di test (txt)", type="t
 if test_data_file is not None:
     df_test = myfunction.load_data(test_data_file)
     
-    # rinomino colonne
+    # rinomino colonne e rimuovo colonne nulle
     df_test.dropna(axis=1, inplace=True)
     df_test.columns = columns
     
+    #dimensioni dataset
     shape = df_test.shape
     st.write("Le dimensioni del dataset sono :", shape)
     
-    st.write("Dataset caricato:")
+    # show dataset labellato
+    st.header("Dataset caricato e labellato:")
     st.dataframe(df_test)
+    
+    # EXPANDER DATASET ORGINALE
+    expander = st.expander("Vedi dataset originale")
+    original = myfunction.load_data(test_data_file)
+    st.dataframe(original)
    
 #################################################################################    
 #           SIDEBAR E INFO DOPO LA SELEZIONE UNITà
