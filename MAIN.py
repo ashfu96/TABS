@@ -65,7 +65,7 @@ if test_data_file is not None:
     # EXPANDER DATASET ORGINALE
     expander = st.expander("Vedi dataset originale")
     original = myfunction.load_data(test_data_file)
-    expander.write(original.head(13097))
+    expander.write(original.head(13096))
    
 #################################################################################    
 #           SIDEBAR E INFO DOPO LA SELEZIONE UNITà
