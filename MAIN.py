@@ -21,8 +21,8 @@ st.set_page_config(
     initial_sidebar_state="expanded"  # Optional: Expand the sidebar by default
 )
 
-st.title("Predictive maintainace using LSTM (Long-short term memory")
-st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
+st.title("Manutenzione predittiva tramite LSTM (Long-short term memory")
+#st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
 
 #################################################################################    
 #           CARICAMENTO DATASET
@@ -48,12 +48,13 @@ test_data_file = st.file_uploader("Carica qui il dataset di test (txt)", type="t
 # se l'utente ha caricato un file di testo valido
 if test_data_file is not None:
     df_test = myfunction.load_data(test_data_file)
-
-    # visualizza la forma del DataFrame su schermo
-    st.write("Dataset caricato:")
-    
     # rinomino colonne
     df_test.columns = columns
+    
+    shape = df_test.shape
+    st.write("Le dimensioni del dataset sono :", shape)
+    
+    st.write("Dataset caricato:")
     st.dataframe(df_test)
    
 #################################################################################    
