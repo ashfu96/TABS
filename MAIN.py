@@ -112,12 +112,10 @@ if test_data_file is not None:
     #myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
 
     # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
-    selected_column =st.sidebar.selectbox('Seleziona la colonna da visualizzare', selected_columns)
-    
-    st.write(f"Andamento del sensore {selected_columns} per l'unità {selected_unit_id} .")
+    selected_sensor =st.sidebar.selectbox('Seleziona il sensore da visualizzare', selected_sensor)
 
     # Genera il grafico in base alle selezioni dell'utente
-    fig = myfunction.plot_sensor(test, selected_unit_id, selected_column)
+    fig = myfunction.plot_sensor(test, selected_unit_id, selected_sensor)
 
     # Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
     st.pyplot(fig)
