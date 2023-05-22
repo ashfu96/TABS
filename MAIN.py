@@ -89,6 +89,7 @@ if test_data_file is not None:
     for result in results:
             #st.header(result)
             st.sidebar.write(result)
+            st.sidebar.divider()
             
 #################################################################################    
 #           PLOT SENSORI CHIAVE
