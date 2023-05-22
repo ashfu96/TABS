@@ -48,7 +48,9 @@ test_data_file = st.file_uploader("Carica qui il dataset di test (txt)", type="t
 # se l'utente ha caricato un file di testo valido
 if test_data_file is not None:
     df_test = myfunction.load_data(test_data_file)
+    
     # rinomino colonne
+    df_test.dropna(axis=1, inplace=True)
     df_test.columns = columns
     
     shape = df_test.shape
