@@ -110,20 +110,22 @@ if test_data_file is not None:
     selected_sensor = sorted_columns.index[:4]
    
     myfunction.plot_selected_columns(test, selected_unit_id, list(selected_sensor))
-    st.divider()
+    
+    #EXPANDER LEGENDA SENSORI
+    expander = st.expander("Vedi legenda sensori")
+    expander.write("Il sensore Nc misura la velocità fisica del nucleo motore")
+    expander.write("Il sensore NRc misura la velocità corretta del nucleo motore")
+    expander.write("Il sensore T30 misura la temperatura totale all'uscita del compressore ad alta pressione (HPC)")
+    expander.write("Il sensore T50 misura la temperatura totale all'uscita dalla turbina a bassa pressione (LPT)")
     
     ### ***   PLOT SENSORE SELEZIONATO   *** ###
+    st.divider()
     # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
     selected_sensor =st.sidebar.selectbox('Seleziona il sensore da visualizzare', selected_sensor)
     # Genera il grafico in base alle selezioni dell'utente (fig = )
     myfunction.plot_sensor(test, selected_unit_id, selected_sensor)
 
-    with st.sidebar:
-        expander = st.expander("Vedi legenda sensori")
-        expander.write("Il sensore Nc misura la velocità fisica del nucleo motore")
-        expander.write("Il sensore NRc misura la velocità corretta del nucleo motore")
-        expander.write("Il sensore T30 misura la temperatura totale all'uscita del compressore ad alta pressione (HPC)")
-        expander.write("Il sensore T50 misura la temperatura totale all'uscita dalla turbina a bassa pressione (LPT)")
+
 #################################################################################    
 #           HEALT-INDEX
 #################################################################################
