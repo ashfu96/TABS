@@ -118,7 +118,12 @@ if test_data_file is not None:
     # Genera il grafico in base alle selezioni dell'utente (fig = )
     myfunction.plot_sensor(test, selected_unit_id, selected_sensor)
 
-    
+    with st.sidebar:
+        expander = st.expander("Vedi legenda sensori")
+        expander.write("Il sensore Nc misura la pressione")
+        expander.write("Il sensore Nc misura la pressione")
+        expander.write("Il sensore Nc misura la pressione")
+        expander.write("Il sensore Nc misura la pressione")
 #################################################################################    
 #           HEALT-INDEX
 #################################################################################
