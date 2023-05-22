@@ -87,7 +87,8 @@ if test_data_file is not None:
     # CONTEGGIO CICLI EFFETTUATI PER UNITà SELEZIONATA
     results = myfunction.count_cycles_by_unit(filtered_data)
     for result in results:
-            st.header(result)
+            #st.header(result)
+            st.sidebar.write(result)
             
 #################################################################################    
 #           PLOT SENSORI CHIAVE
