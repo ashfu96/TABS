@@ -114,7 +114,7 @@ if test_data_file is not None:
     selected_column =st.sidebar.selectbox('Seleziona la colonna da visualizzare', selected_columns)
 
     # Genera il grafico in base alle selezioni dell'utente
-    fig = myfunction.plot_data(test, selected_unit_id, selected_column)
+    fig = myfunction.plot_sensor(test, selected_unit_id, selected_column)
 
     # Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
     st.pyplot(fig)
