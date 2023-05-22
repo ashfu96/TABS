@@ -75,8 +75,8 @@ def normalize_test_columns(df, cols_to_exclude):
 
 
 ###############  PLOT SENSORI IMPORTANTI  ###################
-"""
 
+# PLOT DEI 4 SENSORI TUTTI INSIEME
 def plot_selected_columns(df_train, selected_unit_id, selected_columns):
     # Filter the DataFrame for the selected unit ID
     df_selected_unit = df_train[df_train['unit_ID'] == selected_unit_id]
@@ -86,11 +86,10 @@ def plot_selected_columns(df_train, selected_unit_id, selected_columns):
        
     # Create a figure and a grid of subplots
     fig, axs = plt.subplots(2, 2, figsize=(15, 15))
-    
     # Flatten the array of axes, for easier indexing
     axs = axs.flatten()
     
-    # Plot each column
+    # Plot ogni colonns
     for i, column in enumerate(selected_columns):
         axs[i].plot(df_selected_unit[column].values, color=colors[i % len(colors)], label=column)
         axs[i].set_title('Values of column "{}" for unit ID "{}"'.format(column, selected_unit_id))
@@ -98,17 +97,15 @@ def plot_selected_columns(df_train, selected_unit_id, selected_columns):
         axs[i].set_ylabel('Value')
         axs[i].legend()
     
-    # Remove unused subplots
+    # rimozione subplot inutili
     for i in range(4, 4):
-        fig.delaxes(axs[i])
-    
-    # Adjust the layout so that plots do not overlap
+        fig.delaxes(axs[i])    
+    # evitare sovrapposizioni
     plt.tight_layout()
-    
-    # Use Streamlit's matplotlib support to display the plot
     st.pyplot(fig)
-"""
 
+ 
+######### SELEZIONE DEL SINGOLO SENSORE DALLA SIDEBAR
 def plot_sensor(df, selected_unit_id, selected_column):
     # Filtra il DataFrame del test per l'unità selezionata
     df_selected_unit = df[df['unit_ID'] == selected_unit_id]
