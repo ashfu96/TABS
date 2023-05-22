@@ -98,18 +98,27 @@ if test_data_file is not None:
     #st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
     st.write("Analisi sensori critici")
     
-    # Drop the specified columns
+    # Rimuovi le colonne specificate dal DataFrame
     df_dropped = test.drop(['time_in_cycles', 'unit_ID'], axis=1)
-    # Calculate the standard deviation of each column
+    # Calcola la deviazione standard di ogni colonna
     std_dev = df_dropped.std()
-    # Sort the columns by their standard deviation, in descending order
+    ## Ordina le colonne per deviazione standard, in ordine decrescente
     sorted_columns = std_dev.sort_values(ascending=False)
-    # Get the names of the first four columns
+    # Seleziona i nomi delle prime quattro colonne
     selected_columns = sorted_columns.index[:4]
     
-    st.divider()
-    myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
+    #st.divider()
+    #myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
 
+# Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
+selected_column =st.sidebar.selectbox('Seleziona la colonna da visualizzare', selected_columns)
+
+# Genera il grafico in base alle selezioni dell'utente
+fig = myfunction.plot_data(test, selected_unit_id, selected_column)
+
+# Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
+st.pyplot(fig)
+    
 #################################################################################    
 #           HEALT-INDEX
 #################################################################################
