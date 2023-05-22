@@ -48,6 +48,7 @@ test_data_file = st.file_uploader("Carica qui il dataset di test (txt)", type="t
 
 # se l'utente ha caricato un file di testo valido
 if test_data_file is not None:
+    original_dataset = myfunction.load_data(test_data_file)
     df_test = myfunction.load_data(test_data_file)
     
     # rinomino colonne e rimuovo colonne nulle
@@ -64,8 +65,7 @@ if test_data_file is not None:
     
     # EXPANDER DATASET ORGINALE
     expander = st.expander("Vedi dataset originale")
-    original = myfunction.load_data(test_data_file)
-    expander.write(original.head(13096))
+    expander.write(original.head(200))
    
 #################################################################################    
 #           SIDEBAR E INFO DOPO LA SELEZIONE UNITà
