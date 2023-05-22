@@ -106,7 +106,7 @@ if test_data_file is not None:
     ## Ordina le colonne per deviazione standard, in ordine decrescente
     sorted_columns = std_dev.sort_values(ascending=False)
     # Seleziona i nomi delle prime quattro colonne
-    selected_columns = sorted_columns.index[:4]
+    selected_sensor = sorted_columns.index[:4]
     
     #st.divider()
     #myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
