@@ -66,7 +66,8 @@ if test_data_file is not None:
     # EXPANDER DATASET ORGINALE
     expander = st.expander("Vedi dataset originale")
     #expander.write(data_file.head(1000))
-    expander.write("Le dimensioni del dataset originale sono :", data_file.shape)
+    shape_original = data_file.shape
+    expander.write("Le dimensioni del dataset originale sono :", shape_original)
    
 #################################################################################    
 #           SIDEBAR E INFO DOPO LA SELEZIONE UNITà
