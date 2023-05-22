@@ -112,6 +112,8 @@ if test_data_file is not None:
 
     # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
     selected_column =st.sidebar.selectbox('Seleziona la colonna da visualizzare', selected_columns)
+    
+    st.write(f"Andamento del sensore {selected_columns} per l'unità {selected_unit_id} .")
 
     # Genera il grafico in base alle selezioni dell'utente
     fig = myfunction.plot_sensor(test, selected_unit_id, selected_column)
