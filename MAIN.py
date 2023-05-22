@@ -108,9 +108,10 @@ if test_data_file is not None:
     # Seleziona i nomi delle prime quattro colonne
     selected_sensor = sorted_columns.index[:4]
     
-    #st.divider()
-    #myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
-
+    
+    myfunction.plot_selected_columns(test, selected_unit_id, list(selected_sensor))
+    st.divider()
+    
     # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
     selected_sensor =st.sidebar.selectbox('Seleziona il sensore da visualizzare', selected_sensor)
 
