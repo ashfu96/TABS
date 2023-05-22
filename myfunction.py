@@ -121,7 +121,7 @@ def plot_sensor(df, selected_unit_id, selected_column):
     ax.set_ylabel('Valore')
 
     # Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
-    st.write((f"Valori del sensore {selected_column} per l\'unità {selected_unit_id}")
+    st.write(f"Valori del sensore {selected_column} per l\'unità {selected_unit_id}")
     st.pyplot(fig)
     
 def plot_hotelling_tsquare(df, selected_unit_id, sensors):
