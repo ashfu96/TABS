@@ -120,10 +120,10 @@ if test_data_file is not None:
 
     with st.sidebar:
         expander = st.expander("Vedi legenda sensori")
-        expander.write("Il sensore Nc misura la pressione")
-        expander.write("Il sensore Nc misura la pressione")
-        expander.write("Il sensore Nc misura la pressione")
-        expander.write("Il sensore Nc misura la pressione")
+        expander.write("Il sensore Nc misura la velocità fisica del nucleo motore")
+        expander.write("Il sensore NRc misura la velocità corretta del nucleo motore")
+        expander.write("Il sensore T30 misura la temperatura totale all'uscita del compressore ad alta pressione (HPC)")
+        expander.write("Il sensore T50 misura la temperatura totale all'uscita dalla turbina a bassa pressione (LPT)")
 #################################################################################    
 #           HEALT-INDEX
 #################################################################################
