@@ -75,6 +75,7 @@ def normalize_test_columns(df, cols_to_exclude):
 
 
 ###############  PLOT SENSORI IMPORTANTI  ###################
+"""
 
 def plot_selected_columns(df_train, selected_unit_id, selected_columns):
     # Filter the DataFrame for the selected unit ID
@@ -106,7 +107,21 @@ def plot_selected_columns(df_train, selected_unit_id, selected_columns):
     
     # Use Streamlit's matplotlib support to display the plot
     st.pyplot(fig)
+"""
 
+def plot_sensor(df, selected_unit_id, selected_column):
+    # Filtra il DataFrame del test per l'unità selezionata
+    df_selected_unit = df[df['unit_ID'] == selected_unit_id]
+
+    # Visualizza il grafico della colonna selezionata per l'unità selezionata
+    fig, ax = plt.subplots(figsize=(15, 7))
+    ax.plot(df_selected_unit[selected_column].values, label=selected_column)
+    ax.set_title('Valori della colonna "{}" per l\'unità "{}"'.format(selected_column, selected_unit_id))
+    ax.set_xlabel('Conteggio')
+    ax.set_ylabel('Valore')
+
+    # Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
+    st.pyplot(fig)
     
 def plot_hotelling_tsquare(df, selected_unit_id, sensors):
 
