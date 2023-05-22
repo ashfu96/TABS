@@ -115,11 +115,11 @@ if test_data_file is not None:
     # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
     selected_sensor =st.sidebar.selectbox('Seleziona il sensore da visualizzare', selected_sensor)
 
-    # Genera il grafico in base alle selezioni dell'utente
-    fig = myfunction.plot_sensor(test, selected_unit_id, selected_sensor)
+    # Genera il grafico in base alle selezioni dell'utente (fig = )
+    myfunction.plot_sensor(test, selected_unit_id, selected_sensor)
 
     # Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
-    st.pyplot(fig)
+    #st.pyplot(fig)
     
 #################################################################################    
 #           HEALT-INDEX
