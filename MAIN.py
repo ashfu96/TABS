@@ -21,7 +21,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"  # Optional: Expand the sidebar by default
 )
 
-st.title("Manutenzione predittiva tramite LSTM (Long-short term memory")
+st.title("Manutenzione predittiva tramite LSTM (Long-short term memory)")
 #st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
 
 #################################################################################    
@@ -95,6 +95,7 @@ if test_data_file is not None:
 #           PLOT SENSORI CHIAVE
 #################################################################################
     
+    ### ***   PLOT 4 SENSORI   *** ###
     st.title("Visualizzazione informazioni per l'unità selezionata")
     #st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
     st.write("Analisi sensori critici")
@@ -107,19 +108,16 @@ if test_data_file is not None:
     sorted_columns = std_dev.sort_values(ascending=False)
     # Seleziona i nomi delle prime quattro colonne
     selected_sensor = sorted_columns.index[:4]
-    
-    
+   
     myfunction.plot_selected_columns(test, selected_unit_id, list(selected_sensor))
     st.divider()
     
+    ### ***   PLOT SENSORE SELEZIONATO   *** ###
     # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
     selected_sensor =st.sidebar.selectbox('Seleziona il sensore da visualizzare', selected_sensor)
-
     # Genera il grafico in base alle selezioni dell'utente (fig = )
     myfunction.plot_sensor(test, selected_unit_id, selected_sensor)
 
-    # Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
-    #st.pyplot(fig)
     
 #################################################################################    
 #           HEALT-INDEX
