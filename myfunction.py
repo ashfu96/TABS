@@ -92,9 +92,9 @@ def plot_selected_columns(df_train, selected_unit_id, selected_columns):
     # Plot ogni colonns
     for i, column in enumerate(selected_columns):
         axs[i].plot(df_selected_unit[column].values, color=colors[i % len(colors)], label=column)
-        axs[i].set_title('Values of column "{}" for unit ID "{}"'.format(column, selected_unit_id))
-        axs[i].set_xlabel('Count')
-        axs[i].set_ylabel('Value')
+        axs[i].set_title('Valore del sensore "{}" per l\' unità con ID "{}"'.format(column, selected_unit_id))
+        axs[i].set_xlabel('Cicli effettuati')
+        axs[i].set_ylabel('Valore')
         axs[i].legend()
     
     # rimozione subplot inutili
@@ -113,8 +113,8 @@ def plot_sensor(df, selected_unit_id, selected_column):
     # Visualizza il grafico della colonna selezionata per l'unità selezionata
     fig, ax = plt.subplots(figsize=(15, 7))
     ax.plot(df_selected_unit[selected_column].values, label=selected_column)
-    ax.set_title('Valori della colonna "{}" per l\'unità "{}"'.format(selected_column, selected_unit_id))
-    ax.set_xlabel('Conteggio')
+    ax.set_title('Valori del sensore "{}" per l\'unità "{}"'.format(selected_column, selected_unit_id))
+    ax.set_xlabel('Cicli effettuati')
     ax.set_ylabel('Valore')
 
     # Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
