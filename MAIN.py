@@ -55,17 +55,18 @@ if test_data_file is not None:
     df_test.dropna(axis=1, inplace=True)
     df_test.columns = columns
     
-    #dimensioni dataset
-    shape = df_test.shape
-    st.write("Le dimensioni del dataset sono :", shape)
-    
     # show dataset labellato
     st.header("Dataset caricato e labellato:")
     st.dataframe(df_test)
     
+    #dimensioni dataset
+    shape = df_test.shape
+    st.write("Le dimensioni del dataset labellato sono :", shape)
+    
     # EXPANDER DATASET ORGINALE
     expander = st.expander("Vedi dataset originale")
-    expander.write(data_file.head())
+    #expander.write(data_file.head(1000))
+    expander.write("Le dimensioni del dataset originale sono :", data_file.shape))
    
 #################################################################################    
 #           SIDEBAR E INFO DOPO LA SELEZIONE UNITà
