@@ -126,7 +126,7 @@ if test_data_file is not None:
     # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
     selected_sensor = st.sidebar.selectbox('Seleziona il sensore da visualizzare', selected_columns)
     # Genera il grafico in base alle selezioni dell'utente
-    myfunction.plot_sensor(test, selected_unit_id, list(selected_sensor))
+    myfunction.plot_sensor(test, selected_unit_id, selected_sensor)
 
 
 #################################################################################    
