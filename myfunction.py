@@ -244,7 +244,7 @@ def get_last_sequences_with_predictions(df, sequence_cols, sequence_length, mode
 
 # Funzione per ottenere i dati con le previsioni
 def get_prediction_data(df_test_normalized, sequence_columns, sequence_length, model):
-    result_df = myfunction.get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
+    result_df = get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
     return result_df
 
 # Funzione per mostrare i subset di dati in base alla soglia di previsione
