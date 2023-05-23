@@ -130,7 +130,7 @@ def plot_sensor(df, selected_unit_id, selected_column):
 ########################################################
       ######## DA VALUTARE ########
 ########################################################
-    
+   
 def plot_hotelling_tsquare(df, selected_unit_id, sensors):
 
     # Filter data for the specified unit_id
