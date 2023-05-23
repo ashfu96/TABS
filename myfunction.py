@@ -237,3 +237,32 @@ def get_last_sequences_with_predictions(df, sequence_cols, sequence_length, mode
     predictions = np.asarray(predictions)
     result_df = pd.DataFrame({'unit_ID': unique_unit_ids, 'prediction': predictions})
     return result_df
+
+###################################################################
+#     PROVA
+##################################################################
+
+# Funzione per ottenere i dati con le previsioni
+def get_prediction_data(df_test_normalized, sequence_columns, sequence_length, model):
+    result_df = myfunction.get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
+    return result_df
+
+# Funzione per mostrare i subset di dati in base alla soglia di previsione
+def show_prediction_subsets(df, threshold):
+    subset_df = df[df['prediction'].notnull()].copy()
+    subset_df["prediction"] = subset_df["prediction"].astype(int)
+    subset_df_lt = subset_df[subset_df['prediction'] < threshold].copy()
+    subset_df_gte = subset_df[subset_df['prediction'] >= threshold].copy()
+    return subset_df_lt, subset_df_gte
+
+# Funzione per mostrare i dati in tabs
+def show_data_tabs(data_dict):
+    labels = list(data_dict.keys())
+    tabs = st.sidebar.selectbox("Seleziona la soglia di previsione", labels)
+    data = data_dict[tabs]
+    st.markdown(f"## Previsione per l'unità selezionata: {tabs}", unsafe_allow_html=True)
+    st.write(data)
+
+
+
+
