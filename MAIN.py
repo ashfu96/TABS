@@ -42,6 +42,9 @@ df_train.dropna(axis=1, inplace=True)
 df_rul.dropna(axis=1, inplace=True)
 comparison_test.dropna(axis=1, inplace=True)
 
+#labelling colonne
+df_train.columns = columns
+
 # TEST CARICATO DALL'UTENTE
 # crea il pulsante di caricamento file
 test_data_file = st.file_uploader("Carica qui il dataset di test (txt)", type="txt")
@@ -133,7 +136,6 @@ if test_data_file is not None:
 
     # EXPANDER AVANZATE PESI SENSORI
     with st.expander("Avanzate"):
-        st.write("Modifica i pesi dei singoli sensori")
         weight1, weight2, weight3, weight4 = myfunction.show_sliders()
 
     weights = [weight1, weight2, weight3, weight4]
