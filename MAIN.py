@@ -122,18 +122,19 @@ if test_data_file is not None:
     st.divider()
     # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
     selected_sensor =st.sidebar.selectbox('Seleziona il sensore da visualizzare', selected_sensor)
-    # Genera il grafico in base alle selezioni dell'utente (fig = )
+    # Genera il grafico in base alle selezioni dell'utente
     myfunction.plot_sensor(test, selected_unit_id, selected_sensor)
 
 
 #################################################################################    
 #           HEALT-INDEX
 #################################################################################
-    st.header('Health-index dell unità')
+    st.header('Health-index dell\' unità')
 
-    # BOTTONE AVANZATE PESI SENSORI
-    
-    weight1, weight2, weight3, weight4 = myfunction.show_sliders()
+    # EXPANDER AVANZATE PESI SENSORI
+    with st.expander("Avanzate"):
+        st.write("Modifica i pesi dei singoli sensori")
+        weight1, weight2, weight3, weight4 = myfunction.show_sliders()
 
     weights = [weight1, weight2, weight3, weight4]
     test2=test.copy()
