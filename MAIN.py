@@ -98,7 +98,7 @@ if test_data_file is not None:
     ### ***   PLOT 4 SENSORI   *** ###
     st.title("Visualizzazione informazioni per l'unità selezionata")
     #st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
-    st.write("Analisi sensori critici")
+    st.write("Analisi sensori con deviazione standard più alta")
     
     # Rimuovi le colonne specificate dal DataFrame
     df_dropped = test.drop(['time_in_cycles', 'unit_ID'], axis=1)
@@ -131,13 +131,13 @@ if test_data_file is not None:
 #################################################################################
     st.header('Health-index dell unità')
 
-        # BOTTONE AVANZATE PESI SENSORI
-    if st.button('Impostazioni avanzate'):
-        weight1, weight2, weight3, weight4 = myfunction.show_sliders()
+    # BOTTONE AVANZATE PESI SENSORI
+    
+    weight1, weight2, weight3, weight4 = myfunction.show_sliders()
 
-        weights = [weight1, weight2, weight3, weight4]
-        test2=test.copy()
-        myfunction.calculate_and_plot_health_index(test2, selected_unit_id, weights)
+    weights = [weight1, weight2, weight3, weight4]
+    test2=test.copy()
+    myfunction.calculate_and_plot_health_index(test2, selected_unit_id, weights)
 
     
     
