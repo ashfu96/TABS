@@ -141,72 +141,70 @@ def show_sliders():
     return weight1, weight2, weight3, weight4
 
 def calculate_and_plot_health_index(df, unit_id, weights):
-    # Check if weights are valid
+    # Verifica che i pesi siano validi
     if len(weights) != 4:
         raise ValueError("weights_list deve avere quattro elementi.")
 
-    # Normalize sensor readings for each unit
+    # Normalizza le letture dei sensori per ciascuna unità
     df_normalized = df.groupby('unit_ID').transform(lambda x: (x - x.min()) / (x.max() - x.min()))
 
-    # Calculate health index
+     # Calcola l'indice di salute
     df['health_index'] = np.dot(df_normalized[['T30', 'T50', 'Nc', 'NRc']], weights)
 
-    # Filter dataframe for the given unit ID
+    # Filtra il DataFrame per l'ID dell'unità specificata
     df_unit = df[df['unit_ID'] == unit_id]
 
-    # Create a new figure
+    # Crea una nuova figura
     plt.figure(figsize=(10, 6))
 
-    # Plot health index for the specified unit
+    # Plotta l'indice di salute per l'unità specificata
     plt.plot(df_unit.index, df_unit['health_index'], label=f'Unit {unit_id}')
 
-    # Add title and labels
+    # Aggiungi titolo e etichette
     plt.title(f'Health Index nel tempo per l\' Unità nr° {unit_id} (l\'aumento dei parametri mostra la sofferenza del motore)')
-    plt.xlabel('Time')
+    plt.xlabel('Tempo')
     plt.ylabel('Health Index')
 
-    # Add a legend
-    plt.legend()
-    
-    # Show the plot
+    # Aggiungi una legenda
+    plt.legend()    
+    # Mostra il grafico
     st.pyplot()
 
 ########################################################
-      ######## DA VALUTARE ########
+      ######## HOTELLING T-SQUARE ########
 ########################################################
    
 def plot_hotelling_tsquare(df, selected_unit_id, sensors):
 
-    # Filter data for the specified unit_id
+    # Filtra i dati per l'unità selezionata
     unit_data = df[df['unit_ID'] == selected_unit_id]
 
-    # Select the variables of interest for the specified unit_id
+    # Seleziona le variabili di interesse per l'unità selezionata
     unit_data_selected = unit_data[sensors]
     unit_data_selected.reset_index(drop=True, inplace=True)
     
-    # Calculate the mean vector for the selected variables
+    # Calcola il vettore medio per le variabili selezionate
     mean_vector = np.mean(unit_data_selected, axis=0)
 
-    # Calculate the covariance matrix for the selected variables
+    # Calcola la matrice di covarianza per le variabili selezionate
     covariance_matrix = np.cov(unit_data_selected.values, rowvar=False)
 
-    # Calculate the Hotelling's T-square for each row in the specified unit_id
+    # Calcolo dell' Hotelling's T-square per ogni riga nell'unità selezionata
     unit_T_square = np.dot(np.dot((unit_data_selected - mean_vector), np.linalg.inv(covariance_matrix)), (unit_data_selected - mean_vector).T).diagonal()
 
     return  unit_T_square
 
 def plot_hotelling_tsquare_comparison(df_train, df_test, selected_unit_id, sensors):
-    # Create a figure and axes
+    # Crea figura e assi
     fig, ax = plt.subplots()
-    # Plot the Hotelling's T-square for the training data
+    # Plot Hotelling's T-square per il training
     unit_T_square_train = plot_hotelling_tsquare(df_train, selected_unit_id, sensors)
 
-    # Plot the Hotelling's T-square for the test data
+    # Plot Hotelling's T-square per il test
     unit_T_square_test = plot_hotelling_tsquare(df_test, selected_unit_id, sensors)
-    # Plot the Hotelling's T-square for the test data
     unit_T_square_test = plot_hotelling_tsquare(df_test, selected_unit_id, sensors)
 
-    # Plot the Hotelling's T-square values and the critical value
+    # Plot del valore dell Hotelling's T-square e il valore critico
     ax.plot(unit_T_square_train, label="normal data")
     ax.plot(unit_T_square_test, label="actual data")
     ax.set_xlabel('Row Index')
@@ -214,11 +212,11 @@ def plot_hotelling_tsquare_comparison(df_train, df_test, selected_unit_id, senso
     ax.set_title(f'Hotelling\'s T-square for Unit ID {selected_unit_id}')
     ax.legend()
 
-    # Display the plot using st.pyplot()
+    # Mostra il grafico
     st.pyplot(fig)
 
 ##############################################################################################
-    
+#            PREDIZIONI PRESE COME ULTIMO VALORE DELL'ARRAY    
    
 def get_last_sequences_with_predictions(df, sequence_cols, sequence_length, model):
     
