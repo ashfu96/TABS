@@ -110,9 +110,9 @@ if test_data_file is not None:
     ## Ordina le colonne per deviazione standard, in ordine decrescente
     sorted_columns = std_dev.sort_values(ascending=False)
     # Seleziona i nomi delle prime quattro colonne
-    selected_sensor = sorted_columns.index[:4]
+    selected_columns = sorted_columns.index[:4]
    
-    myfunction.plot_selected_columns(test, selected_unit_id, list(selected_sensor))
+    myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
     
     #EXPANDER LEGENDA SENSORI
     expander = st.expander("Vedi legenda sensori")
@@ -124,9 +124,9 @@ if test_data_file is not None:
     ### ***   PLOT SENSORE SELEZIONATO   *** ###
     st.divider()
     # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
-    selected_sensor =st.sidebar.selectbox('Seleziona il sensore da visualizzare', selected_sensor)
+    selected_columns = st.sidebar.selectbox('Seleziona il sensore da visualizzare', selected_columns)
     # Genera il grafico in base alle selezioni dell'utente
-    myfunction.plot_sensor(test, selected_unit_id, selected_sensor)
+    myfunction.plot_sensor(test, selected_unit_id, selected_columns)
 
 
 #################################################################################    
@@ -152,8 +152,8 @@ if test_data_file is not None:
     cols_to_exclude = ['unit_ID','time_in_cycles']
     df_test_normalized = myfunction.normalize_test_columns(test, cols_to_exclude)
     #st.dataframe(df_test_normalized.head(10))
-    """
-    myfunction.plot_hotelling_tsquare_comparison(df_train, df_test, selected_unit_id, selected_sensor)
+    
+    myfunction.plot_hotelling_tsquare_comparison(df_train, df_test, selected_unit_id, selected_columns)
     
     
     st.write(df_test_normalized.shape)
@@ -219,8 +219,7 @@ if test_data_file is not None:
     with col4:
         st.markdown("")
         st.dataframe(subset_df_part4.style.set_caption(""))
-        
-"""    
+            
     
     # Create columns to display the datasets side by side
     col1_, col2_ = st.beta_columns(2)
