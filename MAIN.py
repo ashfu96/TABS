@@ -145,7 +145,7 @@ if test_data_file is not None:
     myfunction.calculate_and_plot_health_index(test2, selected_unit_id, weights)
  
 ####################################################################################
-#               ANALISI STATISTICA MULTIVARIATA
+#               HOTELLING T-SQUARE
 ####################################################################################
     st.title('Analisi statistica multivariata')
     st.write('Confronto generale tra dati normali e dati effettivi.')
@@ -156,31 +156,30 @@ if test_data_file is not None:
     #st.dataframe(df_test_normalized.head(10))
     
     myfunction.plot_hotelling_tsquare_comparison(df_train, df_test, selected_unit_id, selected_columns)
-    
-    
-    st.write(df_test_normalized.shape)
+
+####################################################################################
+#               PREDIZIONE
+####################################################################################        
+    #st.write(df_test_normalized.shape)
     sequence_columns = ['T2', 'T24', 'T30', 'T50', 'P2', 'P15', 'P30', 'Nf', 'Nc', 'epr', 'Ps30', 'phi', 'NRf', 'NRc', 'BPR',
                         'farB', 'htBleed', 'Nf_dmd', 'PCNfR_dmd', 'W31', 'W32', 'setting_1', 'setting_2', 'setting_3','cycle_norm']
+    
     # Load the saved model
     model = load_model("model_lstm.h5")
     model.compile(loss='mean_squared_error', optimizer='nadam',metrics=['mae'])
-    
-    
-    
+    """
+    st.divider()
     st.title("Prediction of Remain useful life")
     # Assuming you have a DataFrame called df_test
     result_df = myfunction.get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
-    
     
     not_null = result_df[result_df['prediction'].notnull()].copy()
     not_null["prediction"]=not_null["prediction"].astype(int)
     not_null = not_null[not_null['prediction'] >= 20].copy()
     
-    
     subset_df = result_df[result_df['prediction'].notnull()].copy()
     subset_df["prediction"]=subset_df["prediction"].astype(int)
     subset_df = subset_df[subset_df['prediction'] < 20].copy()
-    
     
     null = result_df[result_df['prediction'].isnull()].copy()
     null["prediction"]=null["prediction"].fillna('In control')
@@ -235,3 +234,28 @@ if test_data_file is not None:
     with col2_:
         st.markdown("")
         st.dataframe(null.style.set_caption("In control"))
+"""
+    
+    # Creazione dell'interfaccia Streamlit
+st.title("Prediction of Remain useful life")
+
+
+    # Ottiene i dati con le previsioni
+    result_df = myfunction.get_prediction_data(df_test_normalized, sequence_columns, sequence_length, model)
+
+    # Crea i subset di dati in base alla soglia di previsione
+    subset_df_lt5, subset_df_lte20, subset_df_gt20 = (
+        myfunction.show_prediction_subsets(result_df, 5), 
+        myfunction.show_prediction_subsets(result_df, 20), 
+        myfunction.show_prediction_subsets(result_df, 21)
+    )
+
+    # Crea il dizionario dei dataframe dei subset di dati
+    data_dict = {
+        "Previsioni < 5": subset_df_lt5,
+        "Previsioni <= 20": subset_df_lte20,
+        "Previsioni > 20": subset_df_gt20
+    }
+
+    # Mostra i dati in tabs
+    myfunction.show_data_tabs(data_dict)
