@@ -154,6 +154,7 @@ if test_data_file is not None:
     #st.dataframe(df_test_normalized.head(10))
     myfunction.plot_hotelling_tsquare_comparison(df_train, df_test, selected_unit_id, selected_sensor)
     
+    """
     st.write(df_test_normalized.shape)
     sequence_columns = ['T2', 'T24', 'T30', 'T50', 'P2', 'P15', 'P30', 'Nf', 'Nc', 'epr', 'Ps30', 'phi', 'NRf', 'NRc', 'BPR',
                         'farB', 'htBleed', 'Nf_dmd', 'PCNfR_dmd', 'W31', 'W32', 'setting_1', 'setting_2', 'setting_3','cycle_norm']
@@ -218,7 +219,7 @@ if test_data_file is not None:
         st.markdown("")
         st.dataframe(subset_df_part4.style.set_caption(""))
         
-    
+"""    
     
     # Create columns to display the datasets side by side
     col1_, col2_ = st.beta_columns(2)
