@@ -132,6 +132,7 @@ if test_data_file is not None:
 #################################################################################    
 #           HEALT-INDEX
 #################################################################################
+    st.divider()
     st.header('Health-index dell\' unità')
 
     # EXPANDER AVANZATE PESI SENSORI
@@ -140,6 +141,7 @@ if test_data_file is not None:
 
     weights = [weight1, weight2, weight3, weight4]
     test2=test.copy()
+    st.write("L\'health-index (o indice di salute) ci mostra il deterioramento del motore all\' aumentare dei paramteri")
     myfunction.calculate_and_plot_health_index(test2, selected_unit_id, weights)
 
     
