@@ -258,4 +258,6 @@ if test_data_file is not None:
     }
 
     # Mostra i dati in tabs
-    myfunction.show_data_tabs(data_dict)
+    data = data_dict[tabs]
+    st.markdown(f"## Previsione per l'unità selezionata: {tabs}", unsafe_allow_html=True)
+
