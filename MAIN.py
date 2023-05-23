@@ -144,9 +144,12 @@ if test_data_file is not None:
     test2=test.copy()
     myfunction.calculate_and_plot_health_index(test2, selected_unit_id, weights)
  
-####################################################################################             
-    st.title('Multivariate statistical analysis')
-    st.write('overall comparison between normal and actual data')
+####################################################################################
+#               ANALISI STATISTICA MULTIVARIATA
+####################################################################################
+    st.title('Analisi statistica multivariata')
+    st.write('Confronto generale tra dati normali e dati effettivi.')
+    st.write('NOTA: i \" dati normali \" vengono assunti tali e sono i dati di train caricati in backend, i \" dati effettivi \" sono quelli caricati ')
     # NORMALIZZAZIONE COLONNE DATASET DI TEST + CREAZIONE cycle_norm
     cols_to_exclude = ['unit_ID','time_in_cycles']
     df_test_normalized = myfunction.normalize_test_columns(test, cols_to_exclude)
