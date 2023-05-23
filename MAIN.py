@@ -237,7 +237,7 @@ if test_data_file is not None:
 """
     
     # Creazione dell'interfaccia Streamlit
-st.title("Prediction of Remain useful life")
+    st.title("Prediction of Remain useful life")
 
 
     # Ottiene i dati con le previsioni
