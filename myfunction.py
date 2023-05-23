@@ -126,7 +126,51 @@ def plot_sensor(df, selected_unit_id, selected_column):
     # Utilizza st.pyplot() per visualizzare il grafico all'interno dell'applicazione Streamlit
     st.header(f"Valori del sensore {selected_column} per l\'unità {selected_unit_id}")
     st.pyplot(fig)
+
+#################################################################################    
+#           HEALT-INDEX
+#################################################################################
+
+#  SLIDER PER IMPOSTAZIONI AVANZATE
+def show_sliders():
+    st.write("Modifica i pesi dei sensori:")
+    weight1 = st.slider('T30 (w)', min_value=0.0, max_value=1.0, value=0.1, step=0.1)
+    weight2 = st.slider('T50 (w) ', min_value=0.0, max_value=1.0, value=0.5, step=0.1)
+    weight3 = st.slider('Nc (w)', min_value=0.0, max_value=1.0, value=0.2, step=0.1)
+    weight4 = st.slider('NRc (w)', min_value=0.0, max_value=1.0, value=0.8, step=0.1)
+    return weight1, weight2, weight3, weight4
+
+def calculate_and_plot_health_index(df, unit_id, weights):
+    # Check if weights are valid
+    if len(weights) != 4:
+        raise ValueError("weights_list deve avere quattro elementi.")
+
+    # Normalize sensor readings for each unit
+    df_normalized = df.groupby('unit_ID').transform(lambda x: (x - x.min()) / (x.max() - x.min()))
+
+    # Calculate health index
+    df['health_index'] = np.dot(df_normalized[['T30', 'T50', 'Nc', 'NRc']], weights)
+
+    # Filter dataframe for the given unit ID
+    df_unit = df[df['unit_ID'] == unit_id]
+
+    # Create a new figure
+    plt.figure(figsize=(10, 6))
+
+    # Plot health index for the specified unit
+    plt.plot(df_unit.index, df_unit['health_index'], label=f'Unit {unit_id}')
+
+    # Add title and labels
+    plt.title(f'Health Index nel tempo per l\' Unità nr° {unit_id} (l\'aumento dei parametri mostra la sofferenza del motore)')
+    plt.xlabel('Time')
+    plt.ylabel('Health Index')
+
+    # Add a legend
+    plt.legend()
     
+    # Show the plot
+    st.pyplot()
+
 ########################################################
       ######## DA VALUTARE ########
 ########################################################
@@ -173,49 +217,7 @@ def plot_hotelling_tsquare_comparison(df_train, df_test, selected_unit_id, senso
     # Display the plot using st.pyplot()
     st.pyplot(fig)
 
-#################################################################################    
-#           HEALT-INDEX
-#################################################################################
-
-#  SLIDER PER IMPOSTAZIONI AVANZATE
-def show_sliders():
-    st.write("Modifica i pesi dei sensori:")
-    weight1 = st.slider('T30 (w)', min_value=0.0, max_value=1.0, value=0.1, step=0.1)
-    weight2 = st.slider('T50 (w) ', min_value=0.0, max_value=1.0, value=0.5, step=0.1)
-    weight3 = st.slider('Nc (w)', min_value=0.0, max_value=1.0, value=0.2, step=0.1)
-    weight4 = st.slider('NRc (w)', min_value=0.0, max_value=1.0, value=0.8, step=0.1)
-    return weight1, weight2, weight3, weight4
-
-def calculate_and_plot_health_index(df, unit_id, weights):
-    # Check if weights are valid
-    if len(weights) != 4:
-        raise ValueError("weights list must have exactly four elements.")
-
-    # Normalize sensor readings for each unit
-    df_normalized = df.groupby('unit_ID').transform(lambda x: (x - x.min()) / (x.max() - x.min()))
-
-    # Calculate health index
-    df['health_index'] = np.dot(df_normalized[['T30', 'T50', 'Nc', 'NRc']], weights)
-
-    # Filter dataframe for the given unit ID
-    df_unit = df[df['unit_ID'] == unit_id]
-
-    # Create a new figure
-    plt.figure(figsize=(10, 6))
-
-    # Plot health index for the specified unit
-    plt.plot(df_unit.index, df_unit['health_index'], label=f'Unit {unit_id}')
-
-    # Add title and labels
-    plt.title(f'Health Index Over Time for Unit nr° {unit_id} (the increasing of the parameters shows off suffering of the engine)')
-    plt.xlabel('Time')
-    plt.ylabel('Health Index')
-
-    # Add a legend
-    plt.legend()
-    
-    # Show the plot
-    st.pyplot()
+##############################################################################################
     
    
 def get_last_sequences_with_predictions(df, sequence_cols, sequence_length, model):
