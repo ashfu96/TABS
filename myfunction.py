@@ -8,6 +8,10 @@ import numpy as np
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 
+########################################################
+      ######## CARICAMENTO E PREPROCESING ########
+########################################################
+
 # FUNZIONE LETTURA DATASET
 def load_data(data):
     return pd.read_csv(data, delimiter=" ", header=None)
@@ -74,22 +78,24 @@ def normalize_test_columns(df, cols_to_exclude):
     return df_test
 
 
-###############  PLOT SENSORI IMPORTANTI  ###################
+########################################################
+            ######## PLOT SENSORI ########
+########################################################
 
 # PLOT DEI 4 SENSORI TUTTI INSIEME
 def plot_selected_columns(df_train, selected_unit_id, selected_columns):
     # Filter the DataFrame for the selected unit ID
     df_selected_unit = df_train[df_train['unit_ID'] == selected_unit_id]
     
-    # Define a list of colors
+    # Lista dei colori
     colors = ['b', 'g', 'r', 'c']
        
-    # Create a figure and a grid of subplots
+    # Crea la figura e la griglia per i subplots
     fig, axs = plt.subplots(2, 2, figsize=(15, 15))
-    # Flatten the array of axes, for easier indexing
+    # Flatten degli array degli axes, per indexing più facile
     axs = axs.flatten()
     
-    # Plot ogni colonns
+    # Plot ogni colonna
     for i, column in enumerate(selected_columns):
         axs[i].plot(df_selected_unit[column].values, color=colors[i % len(colors)], label=column)
         axs[i].set_title('Valore del sensore "{}" per l\' unità con ID "{}"'.format(column, selected_unit_id))
@@ -121,6 +127,10 @@ def plot_sensor(df, selected_unit_id, selected_column):
     st.header(f"Valori del sensore {selected_column} per l\'unità {selected_unit_id}")
     st.pyplot(fig)
     
+########################################################
+      ######## DA VALUTARE ########
+########################################################
+    
 def plot_hotelling_tsquare(df, selected_unit_id, sensors):
 
     # Filter data for the specified unit_id
@@ -140,7 +150,6 @@ def plot_hotelling_tsquare(df, selected_unit_id, sensors):
     unit_T_square = np.dot(np.dot((unit_data_selected - mean_vector), np.linalg.inv(covariance_matrix)), (unit_data_selected - mean_vector).T).diagonal()
 
     return  unit_T_square
-
 
 def plot_hotelling_tsquare_comparison(df_train, df_test, selected_unit_id, sensors):
     # Create a figure and axes
