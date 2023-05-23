@@ -255,13 +255,7 @@ def show_prediction_subsets(df, threshold):
     subset_df_gte = subset_df[subset_df['prediction'] >= threshold].copy()
     return subset_df_lt, subset_df_gte
 
-# Funzione per mostrare i dati in tabs
-def show_data_tabs(data_dict):
-    labels = list(data_dict.keys())
-    tabs = st.sidebar.selectbox("Seleziona la soglia di previsione", labels)
-    data = data_dict[tabs]
-    st.markdown(f"## Previsione per l'unità selezionata: {tabs}", unsafe_allow_html=True)
-    st.write(data)
+
 
 
 
