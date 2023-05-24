@@ -254,27 +254,29 @@ if test_data_file is not None:
 ################################################################
 # TAB 2
 
-    data = result_df2[result_df2['prediction'].notnull()].copy()
-    data["prediction"]=data["prediction"].astype(int)
+not_null2 = result_df2[result_df2['prediction'].notnull()].copy()
+not_null2["prediction"] = not_null2["prediction"].astype(int)
 
-    # Dividi il DataFrame in base alla colonna "prediction"
-    groups = data.groupby(pd.cut(data['prediction'], bins=[-int('inf'), 10, 25, int('inf')]))
+subset_df2 = result_df2[result_df2['prediction'].notnull()].copy()
+subset_df2["prediction"] = subset_df2["prediction"].astype(int)
 
-    # Estrai i sotto-dataset
-    less_than_10 = groups.get_group(groups.groups[-int('inf'), 10])
-    between_11_25 = groups.get_group(groups.groups[10, 25])
-    greater_than_25 = groups.get_group(groups.groups[25, int('inf')])
+null2 = result_df2[result_df2['prediction'].isnull()].copy()
+null2["prediction"] = null2["prediction"].fillna('In control')
+
+subset_df_part_1 = subset_df2[subset_df2['prediction'] < 10].copy()
+subset_df_part_2 = subset_df2[(subset_df2['prediction'] >= 10) & (subset_df2['prediction'] <= 25)].copy()
+subset_df_part_3 = subset_df2[subset_df2['prediction'] > 25].copy()
     
     prova1, prova2, prova3  = st.tabs(["less_than_10", "between_11_25", "greater_than_25"])
 
     with prova1:
         st.markdown("less_than_10")
-        st.dataframe(less_than_10)
+        st.dataframe(subset_df_part_1)
         
     with prova1:
         st.markdown("between_11_25")
-        st.dataframe(between_11_25)
+        st.dataframe(subset_df_part_2)
 
     with prova1:
         st.markdown("greater_than_25")
-        st.dataframe(greater_than_25)
+        st.dataframe(subset_df_part_3)
