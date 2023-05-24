@@ -263,9 +263,9 @@ if test_data_file is not None:
     null2 = result_df2[result_df2['prediction'].isnull()].copy()
     null2["prediction"] = null2["prediction"].fillna('In control')
 
-    subset_df_part_1 = subset_df2[subset_df2['prediction'] < 10].copy()
-    subset_df_part_2 = subset_df2[(subset_df2['prediction'] >= 10) & (subset_df2['prediction'] <= 25)].copy()
-    subset_df_part_3 = subset_df2[subset_df2['prediction'] > 25].copy()
+    subset_df_part_1 = subset_df2[subset_df2['prediction'] <= 10].sort_values('prediction').copy()
+    subset_df_part_2 = subset_df2[(subset_df2['prediction'] > 10) & (subset_df2['prediction'] <= 25)].sort_values('prediction').copy()
+    subset_df_part_3 = subset_df2[subset_df2['prediction'] > 25].sort_values('prediction').copy()
     
     prova1, prova2, prova3  = st.tabs(["less_than_10", "between_11_25", "greater_than_25"])
 
@@ -273,10 +273,10 @@ if test_data_file is not None:
         st.markdown("less_than_10")
         st.dataframe(subset_df_part_1)
         
-    with prova1:
+    with prova2:
         st.markdown("between_11_25")
         st.dataframe(subset_df_part_2)
 
-    with prova1:
+    with prova3:
         st.markdown("greater_than_25")
         st.dataframe(subset_df_part_3)
