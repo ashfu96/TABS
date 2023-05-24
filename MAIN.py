@@ -199,7 +199,7 @@ if test_data_file is not None:
     st.title("Predizione dei cicli di vita rimanenti")
     st.write("I cicli di vita rimanenti sono suddivisi in tre range, clicca per visualizzare")
     
-    prova1, prova2, prova3  = st.tabs(["MENO DI 10", "MENO DI 25", "SUPERORI A 25"])
+    prova1, prova2, prova3  = st.tabs(["MENO DI 10", "TRA 10 E 25", "SUPERORI A 25"])
 
     with prova1:
         st.markdown('<span style="font-size:40px; color:#FFFF00; font-weight: bold;">MANUTENZIONE URGENTE</span>', unsafe_allow_html=True)
@@ -216,7 +216,9 @@ if test_data_file is not None:
         st.write("Qui sono mostrate le unità a cui restano cicli di vita superiori a 25")
         st.dataframe(subset_df_part_3)
         
- ################################################################    
+ ################################################################
+#       DA SISTEMARE QUESTE COLONNE !!!!
+###################################################################
     # Create columns to display the datasets side by side
     col1_, col2_ = st.beta_columns(2)
     
@@ -230,4 +232,28 @@ if test_data_file is not None:
         st.markdown("")
         st.dataframe(null2.style.set_caption("In control"))
 
-################################################################
+#############################################################################
+#       PREDIZIONE PER SINGOLA UNITà SELEZIONATA
+##############################################################################
+
+#############################################################################
+#       DOWNLOAD BUTTON
+##############################################################################
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
