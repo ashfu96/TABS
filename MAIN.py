@@ -217,13 +217,13 @@ if test_data_file is not None:
     col1_, col2_ = st.beta_columns(2)
     
     # Display the second dataset in the second column
-    #with col1_:
-        #st.markdown("")
-        #st.dataframe(not_null.style.set_caption("Normal condition"))
+    with col1_:
+        st.markdown("")
+        st.dataframe(not_null2.style.set_caption("Normal condition"))
 
     # Display the third dataset in the third column
     with col2_:
         st.markdown("")
-        st.dataframe(null.style.set_caption("In control"))
+        st.dataframe(null2.style.set_caption("In control"))
 
 ################################################################
