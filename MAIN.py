@@ -178,81 +178,11 @@ if test_data_file is not None:
     # Assuming you have a DataFrame called df_test
     result_df = myfunction.get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
     result_df2 = result_df.copy()
-    
-    not_null = result_df[result_df['prediction'].notnull()].copy()
-    not_null["prediction"]=not_null["prediction"].astype(int)
-    not_null = not_null[not_null['prediction'] >= 20].copy()
-    
-    subset_df = result_df[result_df['prediction'].notnull()].copy()
-    subset_df["prediction"]=subset_df["prediction"].astype(int)
-    subset_df = subset_df[subset_df['prediction'] < 20].copy()
-    
-    null = result_df[result_df['prediction'].isnull()].copy()
-    null["prediction"]=null["prediction"].fillna('In control')
-    
-    
-    # Calculate the size of each part
-    total_rows = len(subset_df)
-    part_size = total_rows // 4
-    remaining_rows = total_rows % 4
-    subset_df = subset_df.sort_values('prediction')
-    
-    # Split the dataset into four parts
-    subset_df_part1 = subset_df[:part_size]
-    subset_df_part2 = subset_df[part_size:part_size*2]
-    subset_df_part3 = subset_df[part_size*2:part_size*3]
-    subset_df_part4 = subset_df[part_size*3:part_size*3+remaining_rows]
-
-    st.title("Urgent maintainance")
-    # Create columns to display the dataset parts side by side
-    col1, col2, col3, col4 = st.beta_columns(4)
 
     #############################################################################
     # PROVA TABS #
-    ###############################################################################
+    ##############################################################################
 
-    tab1, tab2, tab3, tab4 = st.tabs(["COL1", "COL2", "COL3", "COL4"])    
-    
-    # Display the first part of the first dataset in the first column
-    with tab1:
-    #with col1:
-        st.markdown("COL1")
-        st.dataframe(subset_df_part1.style.set_caption(""))
-
-    # Display the second part of the first dataset in the second column
-    with tab2:
-    #with col2:
-        st.markdown("COL2")
-        st.dataframe(subset_df_part2.style.set_caption(""))
-
-    # Display the third part of the first dataset in the third column
-    with tab3:
-    #with col3:
-        st.markdown("COL3")
-        st.dataframe(subset_df_part3.style.set_caption(""))
-    
-    # Display the fourth part in the fourth column
-    with tab4:
-    #with col4:
-        st.markdown("COL4")
-        st.dataframe(subset_df_part4.style.set_caption(""))
-            
-    
-    # Create columns to display the datasets side by side
-    col1_, col2_ = st.beta_columns(2)
-    
-    # Display the second dataset in the second column
-    with col1_:
-        st.markdown("")
-        st.dataframe(not_null.style.set_caption("Normal condition"))
-
-    # Display the third dataset in the third column
-    with col2_:
-        st.markdown("")
-        st.dataframe(null.style.set_caption("In control"))
-
-################################################################
-# TAB 2
     # creazione dataframe con le prediction arrotondate ad intero
     not_null2 = result_df2[result_df2['prediction'].notnull()].copy()
     not_null2["prediction"] = not_null2["prediction"].astype(int)
@@ -281,3 +211,19 @@ if test_data_file is not None:
     with prova3:
         st.markdown("greater_than_25")
         st.dataframe(subset_df_part_3)
+        
+ ################################################################    
+    # Create columns to display the datasets side by side
+    col1_, col2_ = st.beta_columns(2)
+    
+    # Display the second dataset in the second column
+    with col1_:
+        st.markdown("")
+        st.dataframe(not_null.style.set_caption("Normal condition"))
+
+    # Display the third dataset in the third column
+    with col2_:
+        st.markdown("")
+        st.dataframe(null.style.set_caption("In control"))
+
+################################################################
