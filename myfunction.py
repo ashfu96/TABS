@@ -242,18 +242,19 @@ def get_last_sequences_with_predictions(df, sequence_cols, sequence_length, mode
 #     PROVA
 ##################################################################
 
-# Funzione per ottenere i dati con le previsioni
-def get_prediction_data(df_test_normalized, sequence_columns, sequence_length, model):
-    result_df = get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
-    return result_df
-
-# Funzione per mostrare i subset di dati in base alla soglia di previsione
-def show_prediction_subsets(df, threshold):
-    subset_df = df[df['prediction'].notnull()].copy()
-    subset_df["prediction"] = subset_df["prediction"].astype(int)
-    subset_df_lt = subset_df[subset_df['prediction'] < threshold].copy()
-    subset_df_gte = subset_df[subset_df['prediction'] >= threshold].copy()
-    return subset_df_lt, subset_df_gte
+def get_prediction(df, model, sequence_columns, sequence_length, selected_unit_id):
+    # Filtra il DataFrame in base all'unità selezionata
+    filtered_data = myfunction.filter_by_unit(df, selected_unit_id)
+    
+    # Prepara i dati per la predizione
+    X = np.array(filtered_data[sequence_columns])
+    X = sequence.pad_sequences(X, maxlen=sequence_length)
+    
+    # Esegue la predizione utilizzando il modello specificato
+    y_pred = model.predict(X)
+    
+    # Restituisce la predizione come valore numerico
+    return y_pred[0][0]
 
 
 
