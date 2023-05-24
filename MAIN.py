@@ -168,9 +168,13 @@ if test_data_file is not None:
     model = load_model("model_lstm.h5")
     model.compile(loss='mean_squared_error', optimizer='nadam',metrics=['mae'])
     
-    ###########
     st.divider()
     st.title("Prediction of Remain useful life")
+    
+    #############################################################################
+    # PROVA TABS #
+    ###############################################################################
+
     # Assuming you have a DataFrame called df_test
     result_df = myfunction.get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
     
@@ -202,25 +206,35 @@ if test_data_file is not None:
     # Create columns to display the dataset parts side by side
     col1, col2, col3, col4 = st.beta_columns(4)
 
+    #############################################################################
+    # PROVA TABS #
+    ###############################################################################
+
+    tab1, tab2, tab3 = st.tabs(["COL1", "COL2", "COL3", "COL4"])    
     
     # Display the first part of the first dataset in the first column
-    with col1:
-        st.markdown("")
-        st.dataframe(subset_df_part1.style.set_caption(""))
+    with tab1:
+        with col1:
+            st.markdown("COL1")
+            st.dataframe(subset_df_part1.style.set_caption(""))
 
     # Display the second part of the first dataset in the second column
-    with col2:
-        st.markdown("")
-        st.dataframe(subset_df_part2.style.set_caption(""))
+    with tab2:
+        with col2:
+            st.markdown("COL2")
+            st.dataframe(subset_df_part2.style.set_caption(""))
 
     # Display the third part of the first dataset in the third column
-    with col3:
-        st.markdown("")
-        st.dataframe(subset_df_part3.style.set_caption(""))
+    with tab3:
+        with col3:
+            st.markdown("COL3")
+            st.dataframe(subset_df_part3.style.set_caption(""))
+    
     # Display the fourth part in the fourth column
-    with col4:
-        st.markdown("")
-        st.dataframe(subset_df_part4.style.set_caption(""))
+    with tab4:
+        with col4:
+            st.markdown("COL4")
+            st.dataframe(subset_df_part4.style.set_caption(""))
             
     
     # Create columns to display the datasets side by side
