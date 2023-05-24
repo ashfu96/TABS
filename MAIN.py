@@ -202,7 +202,7 @@ if test_data_file is not None:
     prova1, prova2, prova3  = st.tabs(["MENO DI 10", "MENO DI 25", "SUPERORI A 25"])
 
     with prova1:
-        st.markdown('<span style="font-size:48px; color:#FFFF00; font-weight: bold;">MANUTENZIONE URGENTE</span>', unsafe_allow_html=True)
+        st.markdown('<span style="font-size:40px; color:#FFFF00; font-weight: bold;">MANUTENZIONE URGENTE</span>', unsafe_allow_html=True)
         st.write("Qui sono mostrate le unità a cui restano cicli di vita inferiori a 10")
         st.dataframe(subset_df_part_1)
         
