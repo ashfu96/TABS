@@ -171,9 +171,9 @@ if test_data_file is not None:
     st.divider()
     st.title("Prediction of Remain useful life")
     
-    #############################################################################
-    # PROVA TABS #
-    ###############################################################################
+#############################################################################
+# PROVA TABS #
+###############################################################################
 
     # Assuming you have a DataFrame called df_test
     result_df = myfunction.get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
@@ -214,27 +214,27 @@ if test_data_file is not None:
     
     # Display the first part of the first dataset in the first column
     with tab1:
-        with col1:
-            st.markdown("COL1")
-            st.dataframe(subset_df_part1.style.set_caption(""))
+    #with col1:
+        st.markdown("COL1")
+        st.dataframe(subset_df_part1.style.set_caption(""))
 
     # Display the second part of the first dataset in the second column
     with tab2:
-        with col2:
-            st.markdown("COL2")
-            st.dataframe(subset_df_part2.style.set_caption(""))
+    #with col2:
+        st.markdown("COL2")
+        st.dataframe(subset_df_part2.style.set_caption(""))
 
     # Display the third part of the first dataset in the third column
     with tab3:
-        with col3:
-            st.markdown("COL3")
-            st.dataframe(subset_df_part3.style.set_caption(""))
+    #with col3:
+        st.markdown("COL3")
+        st.dataframe(subset_df_part3.style.set_caption(""))
     
     # Display the fourth part in the fourth column
     with tab4:
-        with col4:
-            st.markdown("COL4")
-            st.dataframe(subset_df_part4.style.set_caption(""))
+    #with col4:
+        st.markdown("COL4")
+        st.dataframe(subset_df_part4.style.set_caption(""))
             
     
     # Create columns to display the datasets side by side
