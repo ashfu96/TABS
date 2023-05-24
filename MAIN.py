@@ -238,7 +238,8 @@ if test_data_file is not None:
     
     # Creazione dell'interfaccia Streamlit
     st.title("Prediction of Remain useful life")
-
+    sequence_length = 50
+    
     if st.sidebar.button('Esegui la predizione'):
         # Esegue la predizione e mostra il risultato
         prediction = myfunction.get_prediction(df_test_normalized, model, sequence_columns, sequence_length, selected_unit_id)
