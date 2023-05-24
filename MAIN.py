@@ -168,20 +168,16 @@ if test_data_file is not None:
     model = load_model("model_lstm.h5")
     model.compile(loss='mean_squared_error', optimizer='nadam',metrics=['mae'])
     
-    st.divider()
-    st.title("Prediction of Remain useful life")
-    
-#############################################################################
-# PROVA TABS #
-###############################################################################
-
     # Assuming you have a DataFrame called df_test
     result_df = myfunction.get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
     result_df2 = result_df.copy()
 
-    #############################################################################
-    # PROVA TABS #
-    ##############################################################################
+#############################################################################
+#       VISUALIZZAZIONE PREDIZIONI IN SUBSET CON TABS
+##############################################################################
+
+    st.divider()
+    st.title("Predizione dei cicli di vita rimanenti")
 
     # creazione dataframe con le prediction arrotondate ad intero
     not_null2 = result_df2[result_df2['prediction'].notnull()].copy()
@@ -198,10 +194,17 @@ if test_data_file is not None:
     subset_df_part_2 = subset_df2[(subset_df2['prediction'] > 10) & (subset_df2['prediction'] <= 25)].sort_values('unit_ID').copy()
     subset_df_part_3 = subset_df2[subset_df2['prediction'] > 25].sort_values('unit_ID').copy()
     
-    prova1, prova2, prova3  = st.tabs(["less_than_10", "between_11_25", "greater_than_25"])
+    
+    #       TABS PER LA VISUALIZZAZIONE
+    
+    st.title("Predizione dei cicli di vita rimanenti")
+    st.write("I cicli di vita rimanenti sono suddivisi in tre range, clicca per visualizzare")
+    
+    prova1, prova2, prova3  = st.tabs(["MENO DI 10", "MENO DI 25", "SUPERORI A 25"])
 
     with prova1:
-        st.markdown("less_than_10")
+        st.markdown("MANUTENZIONE URGENTE")
+        st.write("Qui sono mostrate le unità a cui restano cicli di vita inferiori a 10")
         st.dataframe(subset_df_part_1)
         
     with prova2:
