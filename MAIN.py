@@ -239,25 +239,8 @@ if test_data_file is not None:
     # Creazione dell'interfaccia Streamlit
     st.title("Prediction of Remain useful life")
 
-
-    # Ottiene i dati con le previsioni
-    result_df = myfunction.get_prediction_data(df_test_normalized, sequence_columns, sequence_length, model)
-
-    # Crea i subset di dati in base alla soglia di previsione
-    subset_df_lt5, subset_df_lte20, subset_df_gt20 = (
-        myfunction.show_prediction_subsets(result_df, 5), 
-        myfunction.show_prediction_subsets(result_df, 20), 
-        myfunction.show_prediction_subsets(result_df, 21)
-    )
-
-    # Crea il dizionario dei dataframe dei subset di dati
-    data_dict = {
-        "Previsioni < 5": subset_df_lt5,
-        "Previsioni <= 20": subset_df_lte20,
-        "Previsioni > 20": subset_df_gt20
-    }
-
-    # Mostra i dati in tabs
-    data = data_dict[tabs]
-    st.markdown(f"## Previsione per l'unità selezionata: {tabs}", unsafe_allow_html=True)
+    if st.sidebar.button('Esegui la predizione'):
+    # Esegue la predizione e mostra il risultato
+    prediction = get_prediction(df_test_normalized, model, sequence_columns, sequence_length, selected_unit_id)
+    st.write(f"La previsione per l'unità {selected_unit_id} è: {prediction}")
 
