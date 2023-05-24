@@ -244,7 +244,7 @@ def get_last_sequences_with_predictions(df, sequence_cols, sequence_length, mode
 
 def get_prediction(df, model, sequence_columns, sequence_length, selected_unit_id):
     # Filtra il DataFrame in base all'unità selezionata
-    filtered_data = myfunction.filter_by_unit(df, selected_unit_id)
+    filtered_data = filter_by_unit(df, selected_unit_id)
     
     # Prepara i dati per la predizione
     X = np.array(filtered_data[sequence_columns])
