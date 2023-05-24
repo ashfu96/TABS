@@ -210,7 +210,7 @@ if test_data_file is not None:
     # PROVA TABS #
     ###############################################################################
 
-    tab1, tab2, tab3 = st.tabs(["COL1", "COL2", "COL3", "COL4"])    
+    tab1, tab2, tab3, tab4 = st.tabs(["COL1", "COL2", "COL3", "COL4"])    
     
     # Display the first part of the first dataset in the first column
     with tab1:
