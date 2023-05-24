@@ -244,19 +244,7 @@ def get_last_sequences_with_predictions(df, sequence_cols, sequence_length, mode
 #     PROVA
 ##################################################################
 
-def get_prediction(df, model, sequence_columns, sequence_length, selected_unit_id):
-    # Filtra il DataFrame in base all'unità selezionata
-    filtered_data = filter_by_unit(df, selected_unit_id)
-    
-    # Prepara i dati per la predizione
-    X = np.array(filtered_data[sequence_columns])
-    X = sequence.pad_sequences(X, maxlen=sequence_length)
-    
-    # Esegue la predizione utilizzando il modello specificato
-    y_pred = model.predict(X)
-    
-    # Restituisce la predizione come valore numerico
-    return y_pred[0][0]
+
 
 
 
