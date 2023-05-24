@@ -240,7 +240,7 @@ if test_data_file is not None:
     st.title("Prediction of Remain useful life")
 
     if st.sidebar.button('Esegui la predizione'):
-    # Esegue la predizione e mostra il risultato
-    prediction = get_prediction(df_test_normalized, model, sequence_columns, sequence_length, selected_unit_id)
-    st.write(f"La previsione per l'unità {selected_unit_id} è: {prediction}")
+        # Esegue la predizione e mostra il risultato
+        prediction = get_prediction(df_test_normalized, model, sequence_columns, sequence_length, selected_unit_id)
+        st.write(f"La previsione per l'unità {selected_unit_id} è: {prediction}")
 
