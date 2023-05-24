@@ -167,7 +167,8 @@ if test_data_file is not None:
     # Load the saved model
     model = load_model("model_lstm.h5")
     model.compile(loss='mean_squared_error', optimizer='nadam',metrics=['mae'])
-    """
+    
+    ###########
     st.divider()
     st.title("Prediction of Remain useful life")
     # Assuming you have a DataFrame called df_test
@@ -234,14 +235,5 @@ if test_data_file is not None:
     with col2_:
         st.markdown("")
         st.dataframe(null.style.set_caption("In control"))
-"""
-    
-    # Creazione dell'interfaccia Streamlit
-    st.title("Prediction of Remain useful life")
-    sequence_length = 50
-    
-    if st.sidebar.button('Esegui la predizione'):
-        # Esegue la predizione e mostra il risultato
-        prediction = myfunction.get_prediction(df_test_normalized, model, sequence_columns, sequence_length, selected_unit_id)
-        st.write(f"La previsione per l'unità {selected_unit_id} è: {prediction}")
+
 
