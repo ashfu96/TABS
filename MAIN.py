@@ -177,6 +177,7 @@ if test_data_file is not None:
 
     # Assuming you have a DataFrame called df_test
     result_df = myfunction.get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
+    result_df2 = result_df.copy()
     
     not_null = result_df[result_df['prediction'].notnull()].copy()
     not_null["prediction"]=not_null["prediction"].astype(int)
@@ -250,4 +251,30 @@ if test_data_file is not None:
         st.markdown("")
         st.dataframe(null.style.set_caption("In control"))
 
+################################################################
+# TAB 2
 
+    data = result_df2[result_df2['prediction'].notnull()].copy()
+    data["prediction"]=data["prediction"].astype(int)
+
+    # Dividi il DataFrame in base alla colonna "prediction"
+    groups = data.groupby(pd.cut(data['prediction'], bins=[-int('inf'), 10, 25, int('inf')]))
+
+    # Estrai i sotto-dataset
+    less_than_10 = groups.get_group(groups.groups[-int('inf'), 10])
+    between_11_25 = groups.get_group(groups.groups[10, 25])
+    greater_than_25 = groups.get_group(groups.groups[25, int('inf')])
+    
+    prova1, prova2, prova3  = st.tabs(["less_than_10", "between_11_25", "greater_than_25"])
+
+    with prova1:
+        st.markdown("less_than_10")
+        st.dataframe(less_than_10)
+        
+    with prova1:
+        st.markdown("between_11_25")
+        st.dataframe(between_11_25)
+
+    with prova1:
+        st.markdown("greater_than_25")
+        st.dataframe(greater_than_25)
