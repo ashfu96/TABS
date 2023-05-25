@@ -190,7 +190,7 @@ def plot_hotelling_tsquare(df, selected_unit_id, sensors):
     # Calcola la matrice di covarianza per le variabili selezionate
     covariance_matrix = np.cov(unit_data_selected.values, rowvar=False)
 
-    # Calcolo dell' Hotelling's T-square per ogni riga nell'unità selezionata
+    # Calcolo dell' Hotelling's T-square per ogni riga nell'unità selezionata (dove np.dot fa il prodotto scalare)
     unit_T_square = np.dot(np.dot((unit_data_selected - mean_vector), np.linalg.inv(covariance_matrix)), (unit_data_selected - mean_vector).T).diagonal()
 
     return  unit_T_square
