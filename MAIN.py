@@ -249,13 +249,14 @@ if test_data_file is not None:
 
     # Seleziona la riga del dataframe corrispondente all'unità selezionata e casting ad intero
     selected_row = result_df2.loc[result_df2['unit_ID'] == selected_unit_id]
-    selected_row['prediction'] = selected_row['prediction'].astype(int)
+    
     
     # Verifica se il valore della colonna "prediction" è nullo
     if selected_row['prediction'].isnull().values[0]:
         st.markdown("ERRORE: Nessuna predizione disponibile per l'unità selezionata.")
     else:
         # Estrai il valore della colonna "prediction"
+        selected_row['prediction'] = selected_row['prediction'].astype(int)
         prediction_value = selected_row['prediction'].values[0]
 
         # Stampa il valore utilizzando st.markdown
