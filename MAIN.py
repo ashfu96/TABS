@@ -258,7 +258,7 @@ if test_data_file is not None:
     st.header("Scarica il dataset con le predizioni")
     st.write("Clicca su download per scaricare il file in formato .csv con tutte le predizioni effettuate")
 
-    csv = convert_df(result_df)
+    csv = myfunction.convert_df(result_df)
 
     st.download_button(
         label="Download Predizioni",
