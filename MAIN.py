@@ -251,14 +251,17 @@ if test_data_file is not None:
 
     # Verifica se il valore della colonna "prediction" è nullo
     if selected_row['prediction'].isnull().values[0]:
+        selected_row['prediction'] = selected_row['prediction'].astype(int)
         st.markdown("ERRORE: Nessuna predizione disponibile per l'unità selezionata.")
     else:
         # Estrai il valore della colonna "prediction"
         prediction_value = selected_row['prediction'].values[0]
 
         # Stampa il valore utilizzando st.markdown
-        st.markdown(f"La predizione per l'unità {selected_unit_id} è {prediction_value}.")
+        st.header(f"La predizione di voli rimanenti per l'unità {selected_unit_id} è {prediction_value}.")
 
+        
+      
 #############################################################################
 #       DOWNLOAD BUTTON
 ##############################################################################
