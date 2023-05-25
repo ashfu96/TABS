@@ -174,6 +174,26 @@ if test_data_file is not None:
     result_df2 = result_df.copy()
 
 #############################################################################
+#       PREDIZIONE PER SINGOLA UNITà SELEZIONATA
+##############################################################################
+
+    # Seleziona la riga del dataframe corrispondente all'unità selezionata e casting ad intero
+    selected_row = result_df2.loc[result_df2['unit_ID'] == selected_unit_id]    
+    
+    # Verifica se il valore della colonna "prediction" è nullo
+    if selected_row['prediction'].isnull().values[0]:
+        st.markdown("ERRORE: Nessuna predizione disponibile per l'unità selezionata.")
+    else:
+        # Estrai il valore della colonna "prediction"
+        selected_row['prediction'] = selected_row['prediction'].astype(int)
+        prediction_value = selected_row['prediction'].values[0]
+
+        # Stampa il valore utilizzando st.markdown
+        st.markdown(f"<h1 style='color:red;font-size:32px;font-weight:bold;'>La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.</h1>", unsafe_allow_html=True)
+        st.sidebar.write(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.")    
+    
+     #st.markdown(f"<h1 style='color:red;font-size:32px;font-weight:bold;'>La predizione per l'unità {selected_unit_id} è {prediction_value}.</h1>", unsafe_allow_html=True)   
+#############################################################################
 #       VISUALIZZAZIONE PREDIZIONI IN SUBSET CON TABS
 ##############################################################################
 
@@ -227,44 +247,7 @@ if test_data_file is not None:
         st.write("Qui sono mostrate le unità per le quali non è stato possibile effettuare la predizione")
         st.dataframe(null2.style.set_caption("Non disponibile"))
         
- ################################################################
-#       DA SISTEMARE QUESTE COLONNE !!!!
-###################################################################
-    # Create columns to display the datasets side by side
-    col1_, col2_ = st.beta_columns(2)
-    
-    # Display the second dataset in the second column
-    with col1_:
-        st.markdown("")
-        #st.dataframe(not_null2.style.set_caption("Normal condition"))
-
-    # Display the third dataset in the third column
-    with col2_:
-        st.markdown("")
-        #st.dataframe(null2.style.set_caption("In control"))
-
-#############################################################################
-#       PREDIZIONE PER SINGOLA UNITà SELEZIONATA
-##############################################################################
-
-    # Seleziona la riga del dataframe corrispondente all'unità selezionata e casting ad intero
-    selected_row = result_df2.loc[result_df2['unit_ID'] == selected_unit_id]
-    
-    
-    # Verifica se il valore della colonna "prediction" è nullo
-    if selected_row['prediction'].isnull().values[0]:
-        st.markdown("ERRORE: Nessuna predizione disponibile per l'unità selezionata.")
-    else:
-        # Estrai il valore della colonna "prediction"
-        selected_row['prediction'] = selected_row['prediction'].astype(int)
-        prediction_value = selected_row['prediction'].values[0]
-
-        # Stampa il valore utilizzando st.markdown
-        st.header(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.")
-        st.sidebar.write(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.")
-
-        
-      
+     
 #############################################################################
 #       DOWNLOAD BUTTON
 ##############################################################################
