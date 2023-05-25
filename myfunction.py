@@ -85,7 +85,7 @@ def normalize_test_columns(df, cols_to_exclude):
 
 # PLOT DEI 4 SENSORI TUTTI INSIEME
 def plot_selected_columns(df_train, selected_unit_id, selected_columns):
-    # Filter the DataFrame for the selected unit ID
+    # Filtro il DataFrame per l'unità selezionata
     df_selected_unit = df_train[df_train['unit_ID'] == selected_unit_id]
     
     # Lista dei colori
@@ -93,7 +93,7 @@ def plot_selected_columns(df_train, selected_unit_id, selected_columns):
        
     # Crea la figura e la griglia per i subplots
     fig, axs = plt.subplots(2, 2, figsize=(15, 15))
-    # Flatten degli array degli axes, per indexing più facile
+    # Flatten degli array degli assi per indexing più facile
     axs = axs.flatten()
     
     # Plot ogni colonna
@@ -233,7 +233,7 @@ def get_last_sequences_with_predictions(df, sequence_cols, sequence_length, mode
             prediction = model.predict(sequence)[0]
             predictions.append(prediction)
         else:
-            predictions.append(np.nan)  # Add NaN for missing predictions
+            predictions.append(np.nan)  # Add NaN per le predizioni non disponibili
     
     predictions = np.asarray(predictions)
     result_df = pd.DataFrame({'unit_ID': unique_unit_ids, 'prediction': predictions})
