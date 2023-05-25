@@ -125,6 +125,7 @@ if test_data_file is not None:
     st.divider()
     # Crea un menù a tendina nella sidebar per selezionare la colonna da visualizzare
     selected_sensor = st.sidebar.selectbox('Seleziona il sensore da visualizzare', selected_columns)
+    st.sidebar.divider()
     # Genera il grafico in base alle selezioni dell'utente
     myfunction.plot_sensor(test, selected_unit_id, selected_sensor)
 
@@ -259,6 +260,7 @@ if test_data_file is not None:
 
         # Stampa il valore utilizzando st.markdown
         st.header(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.")
+        st.sidebar.header(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.")
 
         
       
