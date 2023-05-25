@@ -246,6 +246,19 @@ if test_data_file is not None:
 #       PREDIZIONE PER SINGOLA UNITà SELEZIONATA
 ##############################################################################
 
+# Seleziona la riga del dataframe corrispondente all'unità selezionata
+selected_row = result_df2.loc[result_df2['unit_id'] == selected_unit_id]
+
+# Verifica se il valore della colonna "prediction" è nullo
+if selected_row['prediction'].isnull().values[0]:
+    st.markdown("ERRORE: Nessuna predizione disponibile per l'unità selezionata.")
+else:
+    # Estrai il valore della colonna "prediction"
+    prediction_value = selected_row['prediction'].values[0]
+
+    # Stampa il valore utilizzando st.markdown
+    st.markdown(f"La predizione per l'unità {selected_unit_id} è {prediction_value}.")
+
 #############################################################################
 #       DOWNLOAD BUTTON
 ##############################################################################
