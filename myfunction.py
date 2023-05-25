@@ -239,8 +239,18 @@ def get_last_sequences_with_predictions(df, sequence_cols, sequence_length, mode
     result_df = pd.DataFrame({'unit_ID': unique_unit_ids, 'prediction': predictions})
     return result_df
 
+#############################################################################
+#       DOWNLOAD BUTTON
+##############################################################################
+
+@st.cache
+def convert_df(df):
+    # IMPORTANT: Cache the conversion to prevent computation on every rerun
+    return df.to_csv().encode('utf-8')
+
+
 ###################################################################
-#     PROVA
+#     FINE
 ##################################################################
 
 
