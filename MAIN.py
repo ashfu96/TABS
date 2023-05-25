@@ -259,13 +259,13 @@ if test_data_file is not None:
     st.write("Clicca su download per scaricare il file in formato .csv con tutte le predizioni effettuate")
 
     csv = myfunction.convert_df(result_df)
-    csv2 = myfunction.convert_df(result_df)
 
     st.download_button(
         label="Download Predizioni",
         data=csv,
         file_name='LSTM_PREDICTION.csv',
         mime='text/csv',
+        key= 'button_one',
     )
 
 # DOWNLOAD ANCHE DA SIDEBAR
@@ -275,9 +275,10 @@ if test_data_file is not None:
 
     st.sidebar.download_button(
         label="Download Predizioni",
-        data=csv2,
+        data=csv,
         file_name='LSTM_PREDICTION.csv',
         mime='text/csv',
+        key= 'button_two',
     )
 
 
