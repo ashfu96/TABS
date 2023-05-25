@@ -185,7 +185,7 @@ if test_data_file is not None:
     
     # Verifica se il valore della colonna "prediction" è nullo
     if selected_row['prediction'].isnull().values[0]:
-        st.markdown("ERRORE: Nessuna predizione disponibile per l'unità selezionata.")
+        st.markdown(f"<h1 style='color:red;font-size:32px;font-weight:bold;'>ERRORE: Nessuna predizione disponibile per l'unità selezionata.</h1>", unsafe_allow_html=True)
     else:
         # Estrai il valore della colonna "prediction"
         selected_row['prediction'] = selected_row['prediction'].astype(int)
