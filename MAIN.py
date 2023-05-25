@@ -270,7 +270,6 @@ if test_data_file is not None:
 
 # DOWNLOAD ANCHE DA SIDEBAR
 
-    st.sidebar.divider()
     st.sidebar.caption("Scarica il file .csv con le predizioni")
 
     st.sidebar.download_button(
@@ -281,9 +280,9 @@ if test_data_file is not None:
         key= 'button_two',
     )
 
-
-
-
+#############################################################################
+#       FINE MAIN
+##############################################################################
 
 
 
