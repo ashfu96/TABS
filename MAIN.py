@@ -22,7 +22,8 @@ st.set_page_config(
 )
 
 st.title("Manutenzione predittiva tramite LSTM (Long-short term memory)")
-st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
+#st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
+st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
 
 #################################################################################    
 #           CARICAMENTO DATASET
@@ -100,7 +101,7 @@ if test_data_file is not None:
     
     ### ***   PLOT 4 SENSORI   *** ###
     st.title("Visualizzazione informazioni per l'unità selezionata")
-    st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
+    #st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
     st.write("Analisi sensori con deviazione standard più alta")
     
     # Rimuovi le colonne specificate dal DataFrame
