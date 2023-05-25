@@ -260,7 +260,7 @@ if test_data_file is not None:
 
         # Stampa il valore utilizzando st.markdown
         st.header(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.")
-        st.sidebar.header(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.")
+        st.sidebar.write(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.")
 
         
       
