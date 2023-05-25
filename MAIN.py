@@ -177,6 +177,9 @@ if test_data_file is not None:
 #       PREDIZIONE PER SINGOLA UNITà SELEZIONATA
 ##############################################################################
 
+    st.divider()
+    st.title("Predizione dei cicli di vita rimanenti")
+
     # Seleziona la riga del dataframe corrispondente all'unità selezionata e casting ad intero
     selected_row = result_df2.loc[result_df2['unit_ID'] == selected_unit_id]    
     
@@ -190,14 +193,12 @@ if test_data_file is not None:
 
         # Stampa il valore utilizzando st.markdown
         st.markdown(f"<h1 style='color:red;font-size:32px;font-weight:bold;'>La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.</h1>", unsafe_allow_html=True)
-        st.sidebar.write(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.")    
+        st.sidebar.write(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} voli rimanenti.")    
     
-     #st.markdown(f"<h1 style='color:red;font-size:32px;font-weight:bold;'>La predizione per l'unità {selected_unit_id} è {prediction_value}.</h1>", unsafe_allow_html=True)   
+       
 #############################################################################
 #       VISUALIZZAZIONE PREDIZIONI IN SUBSET CON TABS
 ##############################################################################
-
-    st.divider()
 
     # creazione dataframe con le prediction arrotondate ad intero
     not_null2 = result_df2[result_df2['prediction'].notnull()].copy()
@@ -217,7 +218,6 @@ if test_data_file is not None:
     
     #       TABS PER LA VISUALIZZAZIONE
     
-    st.title("Predizione dei cicli di vita rimanenti")
     st.write("I cicli di vita rimanenti sono suddivisi in tre range, clicca per visualizzare")
     
     tab1, tab2, tab3, tab4, tab5  = st.tabs(["MENO DI 10", "TRA 10 E 25", "SUPERORI A 25", "VEDI TUTTE", "NON DISPONIBILI"])
