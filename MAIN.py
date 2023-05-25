@@ -247,7 +247,7 @@ if test_data_file is not None:
 ##############################################################################
 
 # Seleziona la riga del dataframe corrispondente all'unità selezionata
-selected_row = result_df2.loc[result_df2['unit_id'] == selected_unit_id]
+selected_row = result_df2.loc[result_df2['unit_ID'] == selected_unit_id]
 
 # Verifica se il valore della colonna "prediction" è nullo
 if selected_row['prediction'].isnull().values[0]:
