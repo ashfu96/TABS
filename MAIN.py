@@ -193,7 +193,7 @@ if test_data_file is not None:
 
         # Stampa il valore utilizzando st.markdown
         st.markdown(f"<h1 style='color:red;font-size:32px;font-weight:bold;'>La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.</h1>", unsafe_allow_html=True)
-        st.sidebar.write(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} voli rimanenti.")    
+        #st.sidebar.write(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} voli rimanenti.")    
     
        
 #############################################################################
@@ -218,29 +218,31 @@ if test_data_file is not None:
     
     #       TABS PER LA VISUALIZZAZIONE
     
+    st.divider()
+    st.header("Vedi altre predizioni:")
     st.write("I cicli di vita rimanenti sono suddivisi in tre range, clicca per visualizzare")
     
-    tab1, tab2, tab3, tab4, tab5  = st.tabs(["MENO DI 10", "TRA 10 E 25", "SUPERORI A 25", "VEDI TUTTE", "NON DISPONIBILI"])
+    tab1, tab2, tab3, tab4, tab5  = st.tabs(["VEDI TUTTE", "MENO DI 10", "TRA 10 E 25", "SUPERORI A 25", "NON DISPONIBILI"])
 
     with tab1:
+        st.markdown("TUTTE LE PREDIZIONI")
+        st.write("Qui sono mostrate tutte le unità e i cicli di vita predetti")
+        st.dataframe(not_null2.style.set_caption("Normal condition"))
+    
+    with tab2:
         st.markdown('<span style="font-size:40px; color:#FFFF00; font-weight: bold;">MANUTENZIONE URGENTE</span>', unsafe_allow_html=True)
         st.write("Qui sono mostrate le unità a cui restano cicli di vita inferiori a 10")
         st.dataframe(subset_df_part_1)
         
-    with tab2:
+    with tab3:
         st.markdown("TRA 10 E 25")
         st.write("Qui sono mostrate le unità a cui restano cicli di vita superiori a 10 e inferiori a 25")
         st.dataframe(subset_df_part_2)
 
-    with tab3:
+    with tab4:
         st.markdown("SUPERORI A 25")
         st.write("Qui sono mostrate le unità a cui restano cicli di vita superiori a 25")
         st.dataframe(subset_df_part_3)
-        
-    with tab4:
-        st.markdown("TUTTE LE PREDIZIONI")
-        st.write("Qui sono mostrate tutte le unità e i cicli di vita predetti")
-        st.dataframe(not_null2.style.set_caption("Normal condition"))
         
     with tab5:
         st.markdown("PREDIZIONI NON DISPONIBILI")
