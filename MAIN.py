@@ -199,22 +199,32 @@ if test_data_file is not None:
     st.title("Predizione dei cicli di vita rimanenti")
     st.write("I cicli di vita rimanenti sono suddivisi in tre range, clicca per visualizzare")
     
-    prova1, prova2, prova3  = st.tabs(["MENO DI 10", "TRA 10 E 25", "SUPERORI A 25"])
+    tab1, tab2, tab3, tab4, tab5  = st.tabs(["MENO DI 10", "TRA 10 E 25", "SUPERORI A 25", "VEDI TUTTE", "NON DISPONIBILI"])
 
-    with prova1:
+    with tab1:
         st.markdown('<span style="font-size:40px; color:#FFFF00; font-weight: bold;">MANUTENZIONE URGENTE</span>', unsafe_allow_html=True)
         st.write("Qui sono mostrate le unità a cui restano cicli di vita inferiori a 10")
         st.dataframe(subset_df_part_1)
         
-    with prova2:
+    with tab2:
         st.markdown("TRA 10 E 25")
         st.write("Qui sono mostrate le unità a cui restano cicli di vita superiori a 10 e inferiori a 25")
         st.dataframe(subset_df_part_2)
 
-    with prova3:
+    with tab3:
         st.markdown("SUPERORI A 25")
         st.write("Qui sono mostrate le unità a cui restano cicli di vita superiori a 25")
         st.dataframe(subset_df_part_3)
+        
+    with tab4:
+        st.markdown("TUTTE LE PREDIZIONI")
+        st.write("Qui sono mostrate tutte le unità e i cicli di vita predetti")
+        st.dataframe(not_null2.style.set_caption("Normal condition"))
+        
+    with tab5:
+        st.markdown("PREDIZIONI NON DISPONIBILI")
+        st.write("Qui sono mostrate le unità per le quali non è stato possibile effettuare la predizione")
+        st.dataframe(null2.style.set_caption("Non disponibile"))
         
  ################################################################
 #       DA SISTEMARE QUESTE COLONNE !!!!
@@ -225,12 +235,12 @@ if test_data_file is not None:
     # Display the second dataset in the second column
     with col1_:
         st.markdown("")
-        st.dataframe(not_null2.style.set_caption("Normal condition"))
+        #st.dataframe(not_null2.style.set_caption("Normal condition"))
 
     # Display the third dataset in the third column
     with col2_:
         st.markdown("")
-        st.dataframe(null2.style.set_caption("In control"))
+        #st.dataframe(null2.style.set_caption("In control"))
 
 #############################################################################
 #       PREDIZIONE PER SINGOLA UNITà SELEZIONATA
