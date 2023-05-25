@@ -22,7 +22,7 @@ st.set_page_config(
 )
 
 st.title("Manutenzione predittiva tramite LSTM (Long-short term memory)")
-#st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
+st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
 
 #################################################################################    
 #           CARICAMENTO DATASET
@@ -100,7 +100,7 @@ if test_data_file is not None:
     
     ### ***   PLOT 4 SENSORI   *** ###
     st.title("Visualizzazione informazioni per l'unità selezionata")
-    #st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
+    st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
     st.write("Analisi sensori con deviazione standard più alta")
     
     # Rimuovi le colonne specificate dal DataFrame
@@ -165,11 +165,11 @@ if test_data_file is not None:
     sequence_columns = ['T2', 'T24', 'T30', 'T50', 'P2', 'P15', 'P30', 'Nf', 'Nc', 'epr', 'Ps30', 'phi', 'NRf', 'NRc', 'BPR',
                         'farB', 'htBleed', 'Nf_dmd', 'PCNfR_dmd', 'W31', 'W32', 'setting_1', 'setting_2', 'setting_3','cycle_norm']
     
-    # Load the saved model
+    # Carica e salva il modello
     model = load_model("model_lstm.h5")
     model.compile(loss='mean_squared_error', optimizer='nadam',metrics=['mae'])
     
-    # Assuming you have a DataFrame called df_test
+    # Prendo le predizioni e le salvo in un dataset 
     result_df = myfunction.get_last_sequences_with_predictions(df_test_normalized, sequence_columns , sequence_length, model)
     result_df2 = result_df.copy()
 
@@ -258,8 +258,10 @@ if test_data_file is not None:
     st.header("Scarica il dataset con le predizioni")
     st.write("Clicca su download per scaricare il file in formato .csv con tutte le predizioni effettuate")
 
+    #conversione file in csv e salataggio in una variabile (csv)
     csv = myfunction.convert_df(result_df)
 
+    #definizione del button
     st.download_button(
         label="Download Predizioni",
         data=csv,
@@ -269,7 +271,6 @@ if test_data_file is not None:
     )
 
 # DOWNLOAD ANCHE DA SIDEBAR
-
     st.sidebar.caption("Scarica il file .csv con le predizioni")
 
     st.sidebar.download_button(
