@@ -192,7 +192,7 @@ if test_data_file is not None:
         prediction_value = selected_row['prediction'].values[0]
 
         # Stampa il valore utilizzando st.markdown
-        st.markdown(f"<h1 style='color:red;font-size:32px;font-weight:bold;'>La predizione per l'unità {selected_unit_id} è di {prediction_value} di voli rimanenti.</h1>", unsafe_allow_html=True)
+        st.markdown(f"<h1 style='color:red;font-size:32px;font-weight:bold;'>La predizione per l'unità {selected_unit_id} è di {prediction_value} voli rimanenti.</h1>", unsafe_allow_html=True)
         #st.sidebar.write(f"La predizione per l'unità {selected_unit_id} è di {prediction_value} voli rimanenti.")    
     
        
@@ -254,8 +254,30 @@ if test_data_file is not None:
 #       DOWNLOAD BUTTON
 ##############################################################################
 
+    st.divider()
+    st.header("Scarica il dataset con le predizioni")
+    st.write("Clicca su download per scaricare il file in formato .csv con tutte le predizioni effettuate")
 
+    csv = convert_df(result_df)
 
+    st.download_button(
+        label="Download Predizioni",
+        data=csv,
+        file_name='LSTM_PREDICTION.csv',
+        mime='text/csv',
+    )
+
+# DOWNLOAD ANCHE DA SIDEBAR
+
+    st.sidebar.divider()
+    st.sidebar.caption("Scarica il file .csv con le predizioni")
+
+    st.sidebar.download_button(
+        label="Download Predizioni",
+        data=csv,
+        file_name='LSTM_PREDICTION.csv',
+        mime='text/csv',
+    )
 
 
 
