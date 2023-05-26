@@ -30,9 +30,9 @@ st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:9799
 #################################################################################
 
 #TRAIN E RUL CARICATI IN BACKEND
-url_TRAIN = "https://raw.githubusercontent.com/ashfu96/ALB/main/train_FD001.txt"
-url_RUL = "https://raw.githubusercontent.com/ashfu96/ALB/main/RUL_FD001.txt"
-url_TEST = "https://raw.githubusercontent.com/ashfu96/ALB/main/test_FD001.txt"
+url_TRAIN = "https://raw.githubusercontent.com/ashfu96/TABS/main/train_FD001.txt"
+url_RUL = "https://raw.githubusercontent.com/ashfu96/TABS/main/RUL_FD001.txt"
+url_TEST = "https://raw.githubusercontent.com/ashfu96/TABS/main/test_FD001.txt"
 
 df_train = myfunction.load_data(url_TRAIN)
 df_rul = myfunction.load_data(url_RUL)
