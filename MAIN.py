@@ -62,7 +62,7 @@ if test_data_file is not None:
     df_test.columns = columns
     # rimuovo le colonne setting 1, setting 2 e setting 3 per scopi grafici
     df_no_setting = df_test.copy()
-    df_no_setting = df_no_setting.drop(columns=[3, 4, 5])
+    df_no_setting = df_no_setting.drop(columns=['setting_1', 'setting_2', 'setting_3'])
     
     # show dataset labellato
     st.header("Dataset caricato e labellato:")
