@@ -259,12 +259,12 @@ if test_data_file is not None:
     st.divider()
     st.header("Scarica il dataset con le predizioni")
     st.write("Clicca su download per scaricare il file in formato .csv con tutte le predizioni effettuate")
-
-    #conversione file in csv e salataggio in una variabile (csv)
-    csv = myfunction.convert_df(result_df)
     
     #arrotondo le predizioni ad int nel file
-    csv["prediction"] = csv["prediction"].astype(int)
+    df_csv = result_df.["prediction"].astype(int)
+    
+    #conversione file in csv e salataggio in una variabile (csv)
+    csv = myfunction.convert_df(df_csv)
 
     #definizione del button
     st.download_button(
