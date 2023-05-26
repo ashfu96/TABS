@@ -21,24 +21,6 @@ st.set_page_config(
     initial_sidebar_state="expanded"  # Optional: Expand the sidebar by default
 )
 
-# CONFIGURAZIONE PLOT DATAFRAME SENZA COLONNA INDICE
-
-# CSS to inject contained in a string
-hide_dataframe_row_index = """
-            <style>
-            .row_heading.level0 {display:none}
-            .blank {display:none}
-            </style>
-            """
-
-# Inject CSS with Markdown
-st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
-
-# Display an interactive table
-#st.dataframe(df)
-
-#####
-
 # TITOLO
 st.title("Manutenzione predittiva")
 #st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
@@ -85,8 +67,8 @@ if test_data_file is not None:
     
     # show dataset labellato
     st.header("Dataset caricato e labellato:")
-    st.markdown('<style>.row_heading.level0 {display:none}.blank {display:none}</style>', unsafe_allow_html=True)   #*****************************************************
-    st.dataframe(df_no_setting)
+  #*****************************************************
+    st.dataframe(df_no_setting.set_index(df.columns[0]))
     
     #dimensioni dataset
     shape = df_no_setting.shape
