@@ -245,8 +245,13 @@ def get_last_sequences_with_predictions(df, sequence_cols, sequence_length, mode
 
 @st.cache
 def convert_df(df):
+    
+    df_copia = df.copy()
+    # Effettua il casting a intero dell'ultima colonna del dataframe
+    df_copia.iloc[:, -1] = df_copia.iloc[:, -1].astype(int)  
+      
     # IMPORTANT: Cache the conversion to prevent computation on every rerun
-    return df.to_csv().encode('utf-8')
+    return df_copia.to_csv().encode('utf-8')
 
 
 ###################################################################
