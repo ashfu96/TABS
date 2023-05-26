@@ -119,8 +119,8 @@ if test_data_file is not None:
     myfunction.plot_selected_columns(test, selected_unit_id, list(selected_columns))
     
     #EXPANDER LEGENDA SENSORI
-    expander = st.expander("Vedi legenda sensori")
-    expander.image("https://github.com/ashfu96/TABS/blob/main/legenda_sensori.png", use_column_width=False)
+    with st.expander("Vedi legenda sensori"):
+        st.image("https://github.com/ashfu96/TABS/blob/main/legenda_sensori.png", use_column_width=False)
 
     
     ### ***   PLOT SENSORE SELEZIONATO   *** ###
