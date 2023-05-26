@@ -262,6 +262,9 @@ if test_data_file is not None:
 
     #conversione file in csv e salataggio in una variabile (csv)
     csv = myfunction.convert_df(result_df)
+    
+    #arrotondo le predizioni ad int nel file
+    csv["prediction"] = csv["prediction"].astype(int)
 
     #definizione del button
     st.download_button(
