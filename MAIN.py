@@ -21,6 +21,25 @@ st.set_page_config(
     initial_sidebar_state="expanded"  # Optional: Expand the sidebar by default
 )
 
+# CONFIGURAZIONE PLOT DATAFRAME SENZA COLONNA INDICE
+
+# CSS to inject contained in a string
+hide_dataframe_row_index = """
+            <style>
+            .row_heading.level0 {display:none}
+            .blank {display:none}
+            </style>
+            """
+
+# Inject CSS with Markdown
+st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)
+
+# Display an interactive table
+#st.dataframe(df)
+
+#####
+
+# TITOLO
 st.title("Manutenzione predittiva")
 #st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
 st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
