@@ -292,12 +292,6 @@ if test_data_file is not None:
 ##############################################################################
 
 
-dim = df_csv.shape
-st.write(dim)
-st.table(df_csv)
-st.dataframe(df_csv)
-st.write(df_csv)
-
 
 
 
