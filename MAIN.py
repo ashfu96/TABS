@@ -139,9 +139,9 @@ if test_data_file is not None:
     st.header('Health-index dell\' unità')
     st.write("L\'health-index (o indice di salute) ci mostra il deterioramento del motore all\' aumentare dei paramteri")
     
-    # EXPANDER AVANZATE PESI SENSORI
-    with st.expander("Avanzate"):
-        weight1, weight2, weight3, weight4 = myfunction.show_sliders()
+    # AVANZATE SLIDER PESI SENSORI
+    st.subheader('Modifica i pesi dei sensori:')
+    weight1, weight2, weight3, weight4 = myfunction.show_sliders()
 
     weights = [weight1, weight2, weight3, weight4]
     test2=test.copy()
