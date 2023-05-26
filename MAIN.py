@@ -120,7 +120,7 @@ if test_data_file is not None:
     
     #EXPANDER LEGENDA SENSORI
     with st.expander("Vedi legenda sensori"):
-        st.image("https://github.com/ashfu96/TABS/blob/main/legenda_sensori.png", use_column_width=False)
+        st.image("https://github.com/ashfu96/TABS/blob/main/legenda_sensori.png?raw=true") #use_column_width=False
 
     
     ### ***   PLOT SENSORE SELEZIONATO   *** ###
