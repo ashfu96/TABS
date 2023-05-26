@@ -67,8 +67,7 @@ if test_data_file is not None:
     
     # show dataset labellato
     st.header("Dataset caricato e labellato:")
-  #*****************************************************
-    st.dataframe(df_no_setting.set_index(df_no_setting.columns[0]))
+    st.dataframe(df_no_setting.set_index(df_no_setting.columns[0]))     #IL COMANDO .set_index(df_no_setting.columns[0]) SERVE A RIMUOVERE LA COLONNA INDEX
     
     #dimensioni dataset
     shape = df_no_setting.shape
@@ -231,28 +230,29 @@ if test_data_file is not None:
     with tab1:
         st.markdown("TUTTE LE PREDIZIONI")
         st.write("Qui sono mostrate tutte le unità e i cicli di vita predetti")
-        st.dataframe(not_null2.style.set_caption("Normal condition"))
+        st.dataframe(not_null2.set_index(subset_df_part_1.columns[0]))
+        #st.dataframe(not_null2.style.set_caption("Normal condition"))
     
     with tab2:
         st.markdown('<span style="font-size:40px; color:#FFFF00; font-weight: bold;">MANUTENZIONE URGENTE</span>', unsafe_allow_html=True)
         st.write("Qui sono mostrate le unità a cui restano cicli di vita inferiori a 10")
-        st.dataframe(subset_df_part_1)
+        st.dataframe(subset_df_part_1.set_index(subset_df_part_1.columns[0]))
         
     with tab3:
         st.markdown("TRA 10 E 25")
         st.write("Qui sono mostrate le unità a cui restano cicli di vita superiori a 10 e inferiori a 25")
-        st.dataframe(subset_df_part_2)
+        st.dataframe(subset_df_part_2.set_index(subset_df_part_2.columns[0]))
 
     with tab4:
         st.markdown("SUPERORI A 25")
         st.write("Qui sono mostrate le unità a cui restano cicli di vita superiori a 25")
-        st.dataframe(subset_df_part_3)
+        st.dataframe(subset_df_part_3.set_index(subset_df_part_3.columns[0]))
         
     with tab5:
         st.markdown("PREDIZIONI NON DISPONIBILI")
         st.write("Qui sono mostrate le unità per le quali non è stato possibile effettuare la predizione")
-        st.dataframe(null2.style.set_caption("Non disponibile"))
-        
+        st.dataframe(null2.set_index(subset_df_part_1.columns[0]))
+        #st.dataframe(null2.style.set_caption("Non disponibile"))
      
 #############################################################################
 #       DOWNLOAD BUTTON
@@ -261,9 +261,6 @@ if test_data_file is not None:
     st.divider()
     st.header("Scarica il dataset con le predizioni")
     st.write("Clicca su download per scaricare il file in formato .csv con tutte le predizioni effettuate")
-    
-    #arrotondo le predizioni ad int nel file
-    #df_csv = result_df["prediction"].astype(int)
     
     #conversione file in csv e salataggio in una variabile (csv)
     df_csv = subset_df2.copy()
