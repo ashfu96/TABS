@@ -68,7 +68,7 @@ if test_data_file is not None:
     # show dataset labellato
     st.header("Dataset caricato e labellato:")
   #*****************************************************
-    st.dataframe(df_no_setting.set_index(df.columns[0]))
+    st.dataframe(df_no_setting.set_index(df_no_setting.columns[0]))
     
     #dimensioni dataset
     shape = df_no_setting.shape
