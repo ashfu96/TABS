@@ -264,7 +264,7 @@ if test_data_file is not None:
     #df_csv = result_df["prediction"].astype(int)
     
     #conversione file in csv e salataggio in una variabile (csv)
-    csv = myfunction.convert_df(result_df)
+    csv = myfunction.convert_df(not_null2)
 
     #definizione del button
     st.download_button(
