@@ -70,7 +70,7 @@ if test_data_file is not None:
     
     #dimensioni dataset
     shape = df_no_setting.shape
-    st.write("Le dimensioni del dataset labellato sono :", df_no_setting)
+    st.write("Le dimensioni del dataset labellato sono :", shape)
     
     # EXPANDER DATASET ORGINALE
     expander = st.expander("Vedi dataset originale")
