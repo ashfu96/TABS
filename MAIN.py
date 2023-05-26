@@ -21,7 +21,7 @@ st.set_page_config(
     initial_sidebar_state="expanded"  # Optional: Expand the sidebar by default
 )
 
-st.title("Manutenzione predittiva tramite LSTM (Long-short term memory)")
+st.title("Manutenzione predittiva")
 #st.image('https://calaero.edu/wp-content/uploads/2018/05/Airplane-Transponder.jpg',caption='CMAPPS - NASA', use_column_width=False)
 st.image('https://www.researchgate.net/publication/348472709/figure/fig1/AS:979966627958790@1610653659534/Schematic-representation-of-the-CMAPSS-model-as-depicted-in-the-CMAPSS-documentation-23.ppm', caption='Turbofan Engine', use_column_width=False)
 
@@ -60,14 +60,17 @@ if test_data_file is not None:
     # rinomino colonne e rimuovo colonne nulle
     df_test.dropna(axis=1, inplace=True)
     df_test.columns = columns
+    # rimuovo le colonne setting 1, setting 2 e setting 3 per scopi grafici
+    df_no_setting = df_test.copy()
+    df_no_setting = df_no_setting.drop(columns=[3, 4, 5])
     
     # show dataset labellato
     st.header("Dataset caricato e labellato:")
-    st.dataframe(df_test)
+    st.dataframe(df_no_setting)
     
     #dimensioni dataset
-    shape = df_test.shape
-    st.write("Le dimensioni del dataset labellato sono :", shape)
+    shape = df_no_setting.shape
+    st.write("Le dimensioni del dataset labellato sono :", df_no_setting)
     
     # EXPANDER DATASET ORGINALE
     expander = st.expander("Vedi dataset originale")
