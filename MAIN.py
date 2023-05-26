@@ -264,7 +264,7 @@ if test_data_file is not None:
     #df_csv = result_df["prediction"].astype(int)
     
     #conversione file in csv e salataggio in una variabile (csv)
-    df_csv = subset_df2.iloc[:, 1:]
+    df_csv = subset_df2.copy
     csv = myfunction.convert_df(df_csv)
 
     #definizione del button
