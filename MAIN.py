@@ -261,7 +261,7 @@ if test_data_file is not None:
     st.write("Clicca su download per scaricare il file in formato .csv con tutte le predizioni effettuate")
     
     #arrotondo le predizioni ad int nel file
-    df_csv = result_df.["prediction"].astype(int)
+    df_csv = result_df["prediction"].astype(int)
     
     #conversione file in csv e salataggio in una variabile (csv)
     csv = myfunction.convert_df(df_csv)
