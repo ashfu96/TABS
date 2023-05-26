@@ -85,7 +85,7 @@ if test_data_file is not None:
     
     # show dataset labellato
     st.header("Dataset caricato e labellato:")
-    st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)   *****************************************************
+    st.markdown(hide_dataframe_row_index, unsafe_allow_html=True)   #*****************************************************
     st.dataframe(df_no_setting)
     
     #dimensioni dataset
